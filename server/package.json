@@ -1,0 +1,22 @@
+{
+  "name": "tuhprototype",
+  "version": "1.0.0",
+  "description": "restful api prototype for TUH",
+  "main": "app.js",
+  "scripts": {
+    "start": "node ./app.js",
+    "dev": "nodemon ./app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alan Greene",
+  "license": "ISC",
+  "dependencies": {
+    "better-sqlite3": "^7.4.5",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "validator": "^13.7.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
