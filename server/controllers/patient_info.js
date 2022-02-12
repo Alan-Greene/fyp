@@ -15,6 +15,18 @@ router.get('/', function (req, res){
 
 });
 
+router.get('/triage', function (req, res){
+
+  try {
+      const result = patient_service.getLastTenTriageOne();
+      res.json(result);
+  } catch (err) {
+      res.status(500);
+      res.send(err.message);
+  }
+
+});
+
 router.get('/:id', (req, res) => {
 
     // read values from req

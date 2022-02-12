@@ -2,9 +2,10 @@
 // Base functions used to get data from the API 
 //
 
-
 // API Base URL - the server address
-const BASE_URL = 'http://localhost:5000/patient_info';
+const BASE_URL = 'http://localhost:5000/patient_info/';
+
+const TRIAGE_URL = 'http://localhost:5000/patient_info/triage';
 
 // Get HTTP headers for requests to the api
 function getHeaders() {
@@ -63,6 +64,7 @@ async function getDataAsync(url, init = fetchInit()) {
 // export this as a module
 export {
     BASE_URL,
+    TRIAGE_URL,
     fetchInit,
     getDataAsync
 };

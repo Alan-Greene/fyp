@@ -38,6 +38,8 @@ app.options('*', cors()); // include before other routes
 app.use('/', require('./controllers/index'));
 // catch 404 and forward to error handler
 app.use('/patient_info', require('./controllers/patient_info'));
+app.use('/patient_info/triage', require('./controllers/patient_info'));
+
 
 app.use((req, res, next) => {
 const err = new Error('Not Found: '+ req.method + ":" + req.originalUrl);

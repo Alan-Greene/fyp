@@ -1,10 +1,9 @@
-
 // import everything from fetchAPI.js
 // This will allow resources to be referenced as api.BASE_URL, etc.
 import * as api from './fetchAPIHelper.js';
 
   // Call this function when page is loaded
-  function displayPatients(patients){
+  function displayPatientsByTriageOne(patients){
 
     const rows = patients.map((patient) => {
       let row = `<tr>
