@@ -1,16 +1,9 @@
 // Dependencies
 
 // require the database connection
-
 const { dbConn } = require('../database/db.js');
-//const patient_service = require('../services/patient_service.js')
-//const patientService = require('../services/patient_service.js');
 
-// Define SQL statements here for use in function below
-// These are parameterised queries.
-// Input parameters are parsed and set before queries are executed
-// Parameterised Queries
-
+// Define SQL statements here for use in the functions below
 const SQL_PATIENT_INFO_ALL = 'SELECT _id, triage_score, ed_duration, arrival_date, arrival_time, checkout_date, checkout_time FROM patient_info';
 const SQL_PATIENT_INFO_LAST_TEN_TRIAGE_ONE = 'SELECT _id, triage_score, ed_duration, arrival_date, arrival_time, checkout_date, checkout_time FROM patient_info WHERE triage_score = 1 ORDER BY _id DESC limit 10';
 const SQL_PATIENT_INFO_LAST_TEN_TRIAGE_TWO = 'SELECT _id, triage_score, ed_duration, arrival_date, arrival_time, checkout_date, checkout_time FROM patient_info WHERE triage_score = 2 ORDER BY _id DESC limit 10';
@@ -19,24 +12,7 @@ const SQL_PATIENT_INFO_LAST_TEN_TRIAGE_FOUR = 'SELECT _id, triage_score, ed_dura
 const SQL_PATIENT_INFO_LAST_TEN_TRIAGE_FIVE = 'SELECT _id, triage_score, ed_duration, arrival_date, arrival_time, checkout_date, checkout_time FROM patient_info WHERE triage_score = 5 ORDER BY _id DESC limit 10';
 const SQL_PATIENT_INFO_BYID = 'SELECT _id, triage_score, ed_duration FROM patient_info WHERE _id = ?;';
 
-// A function to get all products from the database
-
-// products will be returned
-
-//
-
-// function x(ids, calculatedTimes) {
-//     for (let i = 0; i < calculatedTimes.length; i++) {
-//         try {
-//             const stmt = dbConn.prepare(`UPDATE patient_info SET calculated_ed_duration = (?) WHERE _id = (?)`);
-//             const info = stmt.run(`${calculatedTimes[i]}`, `${ids[i]}`);
-//             //console.log(info.changes); 
-//         } catch (err) {
-//             console.log('DB Error - insert_calc: ', err.message);
-//         }
-//     }
-// }
-
+// Function which uses the SQL_PATIENT_INFO_ALL query to retrieve all patient rows from the database.
 function getPatientInfo() {
 
     let patient_info;
@@ -53,11 +29,11 @@ function getPatientInfo() {
     return patient_info;
 }
 
+// Function which uses the SQL_PATIENT_INFO_BYID query to retrieve a patient row from the database based upon _id parameter passed from the URL.
+
 function getPatientInfoById(id) {
     let patient_info;
 
-    // execute SQL
-    // Note await in try/catch block
     try {
         // Execute the SQL
         const result = dbConn.prepare(SQL_PATIENT_INFO_BYID)
@@ -75,6 +51,7 @@ function getPatientInfoById(id) {
     return patient_info;
 }
 
+// Function which uses the SQL_PATIENT_INFO_LAST_TEN_TRIAGE_ONE query to retrieve the latest 10 patients from the database in triage category one.
 function getLastTenTriageOne() {
 
     let lastTenTriageOne;
@@ -83,14 +60,15 @@ function getLastTenTriageOne() {
         const result = dbConn.prepare(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_ONE)
         lastTenTriageOne = result.all();
     } catch (err) {
-        console.log('DB Error - get all patient_info: ', err.message);
+        console.log('DB Error - get last 10 patients in category one: ', err.message);
     } finally {
  
     }
-
+    console.log("getLastTenTriage : One : confirmed");
     return lastTenTriageOne;
 }
 
+// Function which uses the SQL_PATIENT_INFO_LAST_TEN_TRIAGE_TWO query to retrieve the latest 10 patients from the database in triage category two.
 function getLastTenTriageTwo() {
 
     let lastTenTriageTwo;
@@ -99,14 +77,16 @@ function getLastTenTriageTwo() {
         const result = dbConn.prepare(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_TWO)
         lastTenTriageTwo = result.all();
     } catch (err) {
-        console.log('DB Error - get all patient_info: ', err.message);
+        console.log('DB Error - get last 10 patients in category two: ', err.message);
     } finally {
  
     }
 
+    console.log("getLastTenTriage: Two : confirmed");
     return lastTenTriageTwo;
 }
 
+// Function which uses the SQL_PATIENT_INFO_LAST_TEN_TRIAGE_THREE query to retrieve the latest 10 patients from the database in triage category three.
 function getLastTenTriageThree() {
 
     let lastTenTriageThree;
@@ -115,14 +95,16 @@ function getLastTenTriageThree() {
         const result = dbConn.prepare(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_THREE)
         lastTenTriageThree = result.all();
     } catch (err) {
-        console.log('DB Error - get all patient_info: ', err.message);
+        console.log('DB Error - get last 10 patients in category three: ', err.message);
     } finally {
  
     }
 
+    console.log("getLastTenTriage: Three : confirmed");
     return lastTenTriageThree;
 }
 
+// Function which uses the SQL_PATIENT_INFO_LAST_TEN_TRIAGE_FOUR query to retrieve the latest 10 patients from the database in triage category four.
 function getLastTenTriageFour() {
 
     let lastTenTriageFour;
@@ -131,14 +113,16 @@ function getLastTenTriageFour() {
         const result = dbConn.prepare(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_FOUR)
         lastTenTriageFour = result.all();
     } catch (err) {
-        console.log('DB Error - get all patient_info: ', err.message);
+        console.log('DB Error - get last 10 patients in category four: ', err.message);
     } finally {
  
     }
 
+    console.log("getLastTenTriage: Four : confirmed");
     return lastTenTriageFour;
 }
 
+// Function which uses the SQL_PATIENT_INFO_LAST_TEN_TRIAGE_FIVE query to retrieve the latest 10 patients from the database in triage category five.
 function getLastTenTriageFive() {
 
     let lastTenTriageFive;
@@ -147,16 +131,17 @@ function getLastTenTriageFive() {
         const result = dbConn.prepare(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_FIVE)
         lastTenTriageFive = result.all();
     } catch (err) {
-        console.log('DB Error - get all patient_info: ', err.message);
+        console.log('DB Error - get last 10 patients in category five: ', err.message);
     } finally {
  
     }
 
+
+    console.log("getLastTenTriage: Five : confirmed");
     return lastTenTriageFive;
 }
 
-// Export
-
+// Export the modules
 module.exports = {
     getPatientInfo,
     getPatientInfoById,

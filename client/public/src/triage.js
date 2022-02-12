@@ -7,26 +7,21 @@ import * as api from './fetchAPIHelper.js';
 
     const rows = patients.map((patient) => {
       let row = `<tr>
-                  <td>${patient._id}</td>
-                  <td>${patient.triage_score}</td>
-                  <td>${patient.arrival_date}</td>
-                  <td>${patient.arrival_time}</td>
-                  <td>${patient.checkout_date}</td>
-                  <td>${patient.checkout_time}</td>
                   <td>${patient.calculated_times}</td>
+
                 </tr>`;
       return row;
     });
   
-    document.getElementById("patientrows").innerHTML = rows.join("");
+    document.getElementById("triagePatients").innerHTML = rows.join("");
   }
 
 
 async function loadPatientInfo() {
-  const patients = await api.getDataAsync(`${api.BASE_URL}`);
+  const patients = await api.getDataAsync(`${api.TRIAGE_URL}`);
   if (Array.isArray(patients)) {
     addTimeToPatientObject(patients);
-    displayPatients(patients)
+    displayPatientsByTriageOne(patients);
 
   }
 }
@@ -83,7 +78,7 @@ function addTimeToPatientObjectCalc(dateCheckOut, dateRegistration) {
 }
 
 export {
-  displayPatients,
+  displayPatientsByTriageOne,
   loadPatientInfo,
   addTimeToPatientObject,
   addTimeToPatientObjectCalc,
