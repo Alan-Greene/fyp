@@ -13,6 +13,7 @@ function validateId(num) {
     return NaN;
 }
 
+
 function getPatientInfo() {
     const patient_info = patient_info_repository.getPatientInfo();
     return patient_info
@@ -31,6 +32,8 @@ function getPatientInfoById(id) {
         return "Invalid Id";
     }
 }
+
+
 
 function getLastTenTriageOne() {
     const lastTenTriageOne = patient_info_repository.getLastTenTriageOne();
@@ -56,6 +59,10 @@ function getLastTenTriageFive() {
     const lastTenTriageFive = patient_info_repository.getLastTenTriageFive();
     return lastTenTriageFive;
 }
+
+
+
+
 
 module.exports = {
     getPatientInfo,

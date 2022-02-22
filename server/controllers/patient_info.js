@@ -1,7 +1,7 @@
 
 const router = require('express').Router();
 const { json } = require('express');
-const patient_service = require('../services/patient_service.js')
+const patient_service = require('../services/patient_service.js');
 
 router.get('/', function (req, res){
 
@@ -16,10 +16,15 @@ router.get('/', function (req, res){
 });
 
 router.get('/triage', function (req, res){
-
+  let patientArray = new Array();
   try {
-      const result = patient_service.getLastTenTriageOne();
-      res.json(result);
+      const triageOne = patient_service.getLastTenTriageOne();
+      const triageTwo = patient_service.getLastTenTriageTwo();
+      const triageThree = patient_service.getLastTenTriageThree();
+      const triageFour = patient_service.getLastTenTriageFour();
+      const triageFive = patient_service.getLastTenTriageFive();
+      patientArray.push(triageOne, triageTwo, triageThree, triageFour, triageFive)
+      res.json(patientArray);
   } catch (err) {
       res.status(500);
       res.send(err.message);

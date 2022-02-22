@@ -45,10 +45,9 @@ async function getDataAsync(url, init = fetchInit()) {
         // Call fetch and await the respose
         // Initally returns a promise
         const response = await fetch(url, init);
+        
         // As Resonse is dependant on the fetch call, await must also be used here
         const json = await response.json();
-        // Output result to console (for testing purposes) 
-        console.log(json);
 
         // return data
         return json;

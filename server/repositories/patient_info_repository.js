@@ -12,9 +12,9 @@ const SQL_PATIENT_INFO_LAST_TEN_TRIAGE_FOUR = 'SELECT _id, triage_score, ed_dura
 const SQL_PATIENT_INFO_LAST_TEN_TRIAGE_FIVE = 'SELECT _id, triage_score, ed_duration, arrival_date, arrival_time, checkout_date, checkout_time FROM patient_info WHERE triage_score = 5 ORDER BY _id DESC limit 10';
 const SQL_PATIENT_INFO_BYID = 'SELECT _id, triage_score, ed_duration FROM patient_info WHERE _id = ?;';
 
+
 // Function which uses the SQL_PATIENT_INFO_ALL query to retrieve all patient rows from the database.
 function getPatientInfo() {
-
     let patient_info;
 
     try {

@@ -1,39 +1,135 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Triage display</title>
 
-  </head>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Triage display</title>
 
-  <body>
-    <div class="container">
-      <h2 class="mb-4">Last 10 patients per triage category</h2>
+</head>
+
+<body class="triage">
+
+  <div class="container">
+
+    <div class="card border-0 shadow my-5">
+      <img class="card-img-top" src="./src/background.jpg" alt="Tallaght university hospital">
+      <div class="card-body">
+        <h5 class="card-title" style="text-align: center;">Last 10 patient times per triage category</h5>
+        <div class="row">
+
+          <div class="col" id="triageOneCol">
+            <div id="triageOnePatients">
+
+              <table style="width: 100%">
+                <thead>
+                  <tr>
+                    <th style="color:white; background-color: green; text-align: center;">Triage One</th>
+                  </tr>
+                </thead>
+
+                <tbody id="triageOne" style="text-align: right;">
+                </tbody>
+
+                <tbody id="triageOneAverage" style="text-align: right;">
+                </tbody> 
+              </table>
+
+            </div>
+          </div>
+
+          <div class="col" id="triageTwoCol">
+            <div id="triageTwoPatients">
+
+              <table style="width: 100%">
+                <thead>
+                  <tr>
+                    <th style="color:white; background-color: green; text-align: center;">Triage Two</th>
+                  </tr>
+                </thead>
+
+                <tbody id="triageTwo" style="text-align: right;">
+                </tbody>
+
+                <tbody id="triageTwoAverage" style="text-align: right;">
+                </tbody> 
+              </table>
+
+            </div>
+          </div>
+
+          <div class="col" id="triageThreeCol">
+            <div id="triageThreePatients">
+
+              <table style="width: 100%">
+                <thead>
+                  <tr>
+                    <th style="color:white; background-color: orange; text-align: center;">Triage Three</th>
+                  </tr>
+                </thead>
+
+                <tbody id="triageThree" style="text-align: right;">
+                </tbody>
+
+                <tbody id="triageThreeAverage" style="text-align: right;">
+                </tbody> 
+              </table>
+
+            </div>
+          </div>
+
+          <div class="col" id="triageFourCol">
+            <div id="triageFourPatients">
+
+              <table style="width: 100%">
+                <thead>
+                  <tr>
+                    <th style="color:white; background-color: orange; text-align: center;">Triage Four</th>
+                  </tr>
+                </thead>
+
+                <tbody id="triageFour" style="text-align: right;">
+                </tbody>
+
+                <tbody id="triageFourAverage" style="text-align: right;">
+                </tbody> 
+              </table>
+
+            </div>
+          </div>
+
+          <div class="col" id="triageFiveCol">
+            <div id="triageFivePatients">
+
+              <table style="width: 100%">
+                <thead>
+                  <tr>
+                    <th style="color:white; background-color: red; text-align: center;">Triage Five</th>
+                  </tr>
+                </thead>
+
+                <tbody id="triageFive" style="text-align: right;">
+                </tbody>
+
+                <tbody id="triageFiveAverage" style="text-align: right;">
+                </tbody> 
+              </table>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
     </div>
+  </div>
+</body>
 
-    <div id="patients">
-      <table style="width: 100%">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" href="./css/style.css">
+<script src="./src/triage.js" type="module"></script>
+</body>
 
-        <thead>
-          <tr>
-            <th>Triage One</th>
-            <th>Triage Two</th>
-            <th>Triage Three</th>
-            <th>Triage Four</th>
-            <th>Triage five</th>
-          </tr>
-        </thead>
-
-        <tbody id="triagePatients">
-        </tbody>
-
-      </table>
-    </div>
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/style.css">
-    <script src="./src/triage.js" type="module"></script>
-  </body>
 </html>
