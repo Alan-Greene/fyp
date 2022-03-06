@@ -8,120 +8,225 @@
 
 </head>
 
-<body class="triage">
+<body>
 
-  <div class="container">
+  <div class="container-fluid">
 
-    <div class="card border-0 shadow my-5">
-      <img class="card-img-top" src="./src/background.jpg" alt="Tallaght university hospital">
-      <div class="card-body">
-        <h5 class="card-title" style="text-align: center;">Last 10 patient times per triage category</h5>
-        <div class="row">
-
-          <div class="col" id="triageOneCol">
-            <div id="triageOnePatients">
-
-              <table style="width: 100%">
-                <thead>
-                  <tr>
-                    <th style="color:white; background-color: green; text-align: center;">Triage One</th>
-                  </tr>
-                </thead>
-
-                <tbody id="triageOne" style="text-align: right;">
-                </tbody>
-
-                <tbody id="triageOneAverage" style="text-align: right;">
-                </tbody> 
-              </table>
-
-            </div>
-          </div>
-
-          <div class="col" id="triageTwoCol">
-            <div id="triageTwoPatients">
-
-              <table style="width: 100%">
-                <thead>
-                  <tr>
-                    <th style="color:white; background-color: green; text-align: center;">Triage Two</th>
-                  </tr>
-                </thead>
-
-                <tbody id="triageTwo" style="text-align: right;">
-                </tbody>
-
-                <tbody id="triageTwoAverage" style="text-align: right;">
-                </tbody> 
-              </table>
-
-            </div>
-          </div>
-
-          <div class="col" id="triageThreeCol">
-            <div id="triageThreePatients">
-
-              <table style="width: 100%">
-                <thead>
-                  <tr>
-                    <th style="color:white; background-color: orange; text-align: center;">Triage Three</th>
-                  </tr>
-                </thead>
-
-                <tbody id="triageThree" style="text-align: right;">
-                </tbody>
-
-                <tbody id="triageThreeAverage" style="text-align: right;">
-                </tbody> 
-              </table>
-
-            </div>
-          </div>
-
-          <div class="col" id="triageFourCol">
-            <div id="triageFourPatients">
-
-              <table style="width: 100%">
-                <thead>
-                  <tr>
-                    <th style="color:white; background-color: orange; text-align: center;">Triage Four</th>
-                  </tr>
-                </thead>
-
-                <tbody id="triageFour" style="text-align: right;">
-                </tbody>
-
-                <tbody id="triageFourAverage" style="text-align: right;">
-                </tbody> 
-              </table>
-
-            </div>
-          </div>
-
-          <div class="col" id="triageFiveCol">
-            <div id="triageFivePatients">
-
-              <table style="width: 100%">
-                <thead>
-                  <tr>
-                    <th style="color:white; background-color: red; text-align: center;">Triage Five</th>
-                  </tr>
-                </thead>
-
-                <tbody id="triageFive" style="text-align: right;">
-                </tbody>
-
-                <tbody id="triageFiveAverage" style="text-align: right;">
-                </tbody> 
-              </table>
-
-            </div>
-          </div>
-
-        </div>
+    <div class="row pt-3 pb-2">
+      <div class="col-sm">
+        <h1 class="main_header">Welcome to Tallaght University Hospital</h1>
       </div>
     </div>
-  </div>
+
+
+    <div class="row">
+      <div class="col-sm-12">
+        <p id="main_p_one">
+          Tallaght university Hospital uses the Mancherster triage system to categorise patients.
+          <br>
+          Patients in category one and two will be seen immediately as their condition is said to be critical.
+          <br>
+          Patients in categories three, four and five are not in a critical condition and will be seen as soon as
+          possible.
+        </p>
+
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <p id="main_p_break">
+        </p>
+      </div>
+    </div>
+
+    <div class="row pt-2 pb-2">
+      <div class="col-sm-12">
+        <h1 id="triage_header">Average time for a patient to see a triage doctor</h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="row">
+          <div class="col-sm-7 five-three">
+
+            <div class="row">
+
+              <div class="col-sm-4">
+                <div class="card">
+                  <div class="card-body" style="text-align: center;">
+                    <h5 class="card-title">Category One</h5>
+
+                    <div id="triageOneTriageAverage">
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-4">
+                <div class="card">
+                  <div class="card-body" style="text-align: center;">
+                    <h5 class="card-title">Category Two</h5>
+
+                    <div id="triageTwoTriageAverage">
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="col-sm-4">
+                <div class="card">
+                  <div class="card-body" style="text-align: center;">
+                    <h5 class="card-title">Category Three</h5>
+
+                    <div id="triageThreeTriageAverage">
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <!-- end inner row -->
+            </div>
+
+          </div>
+
+          <div class="col-sm-5 five-two">
+
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="card">
+                  <div class="card-body" style="text-align: center;">
+                    <h5 class="card-title">Category Four</h5>
+
+                    <div id="triageFourTriageAverage">
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-6">
+                <div class="card">
+                  <div class="card-body" style="text-align: center;">
+                    <h5 class="card-title">Category Five</h5>
+
+                    <div id="triageFiveTriageAverage">
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <!-- end inner row -->
+          </div>
+        </div>​
+        <!-- end outer row -->
+
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <h1 id="triage_header">Average time for a patient to recieve treatment and be discharged</h1>
+      </div>
+    </div>
+
+    <div class="row pt-2">
+      <div class="col-sm-12">
+        <div class="row">
+          <div class="col-sm-7 five-three">
+
+            <div class="row">
+
+              <div class="col-sm-4">
+                <div class="card">
+                  <div class="card-body" style="text-align: center;">
+                    <h5 class="card-title">Category One</h5>
+
+                    <div id="triageOneAverage">
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-4">
+                <div class="card">
+                  <div class="card-body" style="text-align: center;">
+                    <h5 class="card-title">Category Two</h5>
+
+                    <div id="triageTwoAverage">
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="col-sm-4">
+                <div class="card">
+                  <div class="card-body" style="text-align: center;">
+                    <h5 class="card-title">Category Three</h5>
+
+                    <div id="triageThreeAverage">
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <!-- end inner row -->
+            </div>
+
+          </div>
+
+          <div class="col-sm-5 five-two">
+
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="card">
+                  <div class="card-body" style="text-align: center;">
+                    <h5 class="card-title">Category Four</h5>
+
+                    <div id="triageFourAverage">
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-6">
+                <div class="card">
+                  <div class="card-body" style="text-align: center;">
+                    <h5 class="card-title">Category Five</h5>
+
+                    <div id="triageFiveAverage">
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <!-- end inner row -->
+          </div>
+        </div>​
+        <!-- end outer row -->
+      </div>
+    </div>
+
+    <div class="row pt-2 pb-2">
+      <div class="col-sm-12">
+        <h1 id="triage_footer">*Estimated waiting times are based upon the previous 10 patients*</h1>
+      </div>
+    </div>
+
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
@@ -130,6 +235,5 @@
   integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <link rel="stylesheet" href="./css/style.css">
 <script src="./src/triage.js" type="module"></script>
-</body>
 
 </html>
