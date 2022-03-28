@@ -1,4 +1,5 @@
 // Dependencies
+const cron = require("node-cron");
 
 // require the database connection
 const { dbConn } = require('../database/db.js');
@@ -7,13 +8,16 @@ const patient_password_service = require('../services/password.js')
 
 // Define SQL statements here for use in the functions below
 const SQL_PATIENT_INFO_ALL = 'SELECT _id, triage_score, arrival_date, arrival_time, checkout_date, checkout_time FROM patient_info';
+
 const SQL_PATIENT_INFO_LAST_TEN_TRIAGE_ONE = 'SELECT _id, triage_score, arrival_date, arrival_time, triage_date, triage_time, checkout_date, checkout_time FROM patient_info WHERE triage_score = 1 ORDER BY _id DESC limit 10';
 const SQL_PATIENT_INFO_LAST_TEN_TRIAGE_TWO = 'SELECT _id, triage_score, arrival_date, arrival_time, triage_date, triage_time, checkout_date, checkout_time FROM patient_info WHERE triage_score = 2 ORDER BY _id DESC limit 10';
 const SQL_PATIENT_INFO_LAST_TEN_TRIAGE_THREE = 'SELECT _id, triage_score, arrival_date, arrival_time, triage_date, triage_time, checkout_date, checkout_time FROM patient_info WHERE triage_score = 3 ORDER BY _id DESC limit 10';
 const SQL_PATIENT_INFO_LAST_TEN_TRIAGE_FOUR = 'SELECT _id, triage_score, arrival_date, arrival_time, triage_date, triage_time, checkout_date, checkout_time FROM patient_info WHERE triage_score = 4 ORDER BY _id DESC limit 10';
 const SQL_PATIENT_INFO_LAST_TEN_TRIAGE_FIVE = 'SELECT _id, triage_score, arrival_date, arrival_time, triage_date, triage_time, checkout_date, checkout_time FROM patient_info WHERE triage_score = 5 ORDER BY _id DESC limit 10';
+
 const SQL_PATIENT_INFO_BYID = 'SELECT _id, triage_score, ed_duration FROM patient_info WHERE _id = ?;';
-const SQL_PATIENT_GENERATE_PASSWORD = 'SELECT _id, arrival_date, arrival_time, birth_month, birth_year FROM patient_info';
+
+const SQL_PATIENT_GENERATE_PASSWORD = 'SELECT _id, arrival_date, arrival_time, birth_month, birth_year FROM patient_info WHERE password is NULL';
 const SQL_PATIENT_SET_PASSWORD = 'UPDATE patient_info SET password = ? WHERE _id = ? AND password IS NULL';
 
 
@@ -71,27 +75,22 @@ function getPatientInfoGeneratePassword() {
 
 }
 
-function setPatientPassword() {
-    let passwordPatients = getPatientInfoGeneratePassword();
-    let password_list = patient_password_service.generatePasswordList(passwordPatients);
+async function setPatientPassword() {
 
-    console.log(password_list);
+    var patients = getPatientInfoGeneratePassword();
 
-    let id_list = patient_password_service.generateIdList(passwordPatients);
-
+    var id_list = patient_password_service.generateIdList(patients);
+    var password_list = patient_password_service.generatePlainTextPasswordList(patients);
+    var hashed_password_list = await patient_password_service.generatePasswordList(password_list);
+    console.log("get password list");
     console.log(id_list);
-
-
-    //console.log(id_list);
-
-    //console.log(password_list);
+    console.log(hashed_password_list);
 
     for (let i = 0; i < id_list.length; i++) {
 
         try {
             const stmt = dbConn.prepare(SQL_PATIENT_SET_PASSWORD);
-
-            stmt.run(password_list[i], id_list[i]);
+            stmt.run(hashed_password_list[i], id_list[i]);
         } catch (err) {
             console.log('DB Error - setPatientPassword: ', err.message);
         }
@@ -100,9 +99,6 @@ function setPatientPassword() {
 
 // Function which uses the SQL_PATIENT_INFO_LAST_TEN_TRIAGE_ONE query to retrieve the latest 10 patients from the database in triage category one.
 function getLastTenTriageOne() {
-
-
-    setPatientPassword();
 
     let lastTenTriageOne;
 
@@ -114,7 +110,6 @@ function getLastTenTriageOne() {
     } finally {
 
     }
-    console.log("getLastTenTriage : One : confirmed");
     return lastTenTriageOne;
 }
 
@@ -132,7 +127,6 @@ function getLastTenTriageTwo() {
 
     }
 
-    console.log("getLastTenTriage: Two : confirmed");
     return lastTenTriageTwo;
 }
 
@@ -150,7 +144,6 @@ function getLastTenTriageThree() {
 
     }
 
-    console.log("getLastTenTriage: Three : confirmed");
     return lastTenTriageThree;
 }
 
@@ -168,7 +161,6 @@ function getLastTenTriageFour() {
 
     }
 
-    console.log("getLastTenTriage: Four : confirmed");
     return lastTenTriageFour;
 }
 
@@ -187,9 +179,14 @@ function getLastTenTriageFive() {
     }
 
 
-    console.log("getLastTenTriage: Five : confirmed");
     return lastTenTriageFive;
 }
+
+cron.schedule("*/30 * * * * *", function () {
+    setPatientPassword();
+    console.log("COMPLETE");
+});
+
 
 // Export the modules
 module.exports = {
