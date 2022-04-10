@@ -10,6 +10,9 @@ const PORT = 5000;
 // app is a new instance of express (the web app framework)
 let app = express();
 
+app.use(express.static('public'));
+app.set('view engine', 'pug');
+
 // Application settings
 app.use((req, res, next) => {
 
@@ -18,7 +21,7 @@ res.setHeader("Content-Type", "application/json");
 next();
 });
 
-// Allow app to support differnt body content types
+//Allow app to support differnt body content types
 app.use(express.text());
 
 // support json encoded bodies
@@ -37,10 +40,9 @@ app.options('*', cors()); // include before other routes
 /* Configure app Routes to handle requests from browser */
 // The default route
 app.use('/', require('./controllers/index'));
-// catch 404 and forward to error handler
+app.use('/url', require('./controllers/url'));
 app.use('/patient_info', require('./controllers/patient_info'));
 app.use('/patient_info/triage', require('./controllers/patient_info'));
-
 
 app.use((req, res, next) => {
 const err = new Error('Not Found: '+ req.method + ":" + req.originalUrl);

@@ -72,3 +72,39 @@ img {
   border-radius: 5px;
   padding: 10px;
 }
+
+.btn-primary {
+  margin: 0;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background-color: #1a237e;
+}
+
+label {
+  color: #000000;
+  font-weight: bold;
+  display: block;
+  float: left;
+  margin-top: 5px;
+  }
+  label:after { content: ": " }
+
+.ontime::before {
+  content: "On time";
+  height: 40px;
+  background: green;
+    
+}
+
+.delayed {
+  height: 40px;
+  background: orange;
+}
+
+.verydelayed {
+  height: 40px;
+  background: red;
+}

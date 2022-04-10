@@ -15,10 +15,14 @@ const SQL_PATIENT_INFO_LAST_TEN_TRIAGE_THREE = 'SELECT _id, triage_score, arriva
 const SQL_PATIENT_INFO_LAST_TEN_TRIAGE_FOUR = 'SELECT _id, triage_score, arrival_date, arrival_time, triage_date, triage_time, checkout_date, checkout_time FROM patient_info WHERE triage_score = 4 ORDER BY _id DESC limit 10';
 const SQL_PATIENT_INFO_LAST_TEN_TRIAGE_FIVE = 'SELECT _id, triage_score, arrival_date, arrival_time, triage_date, triage_time, checkout_date, checkout_time FROM patient_info WHERE triage_score = 5 ORDER BY _id DESC limit 10';
 
-const SQL_PATIENT_INFO_BYID = 'SELECT _id, triage_score, ed_duration FROM patient_info WHERE _id = ?;';
+const SQL_PATIENT_INFO_BYID = 'SELECT _id, triage_score FROM patient_info WHERE _id = ?;';
 
 const SQL_PATIENT_GENERATE_PASSWORD = 'SELECT _id, arrival_date, arrival_time, birth_month, birth_year FROM patient_info WHERE password is NULL';
 const SQL_PATIENT_SET_PASSWORD = 'UPDATE patient_info SET password = ? WHERE _id = ? AND password IS NULL';
+
+const SQL_PATIENT_INFO_BY_URL = 'SELECT _id, triage_score, arrival_date, arrival_time, triage_date, triage_time, checkout_date, checkout_time FROM patient_info WHERE password = ?;';
+
+const SQL_PATIENT_INSERT = 'INSERT INTO patient_info (_id, birth_year, birth_month, gender, patient_status, arrival_date, arrival_time, triage_date, triage_time, checkout_date, checkout_time, returning_visit, arrival_mode, referral, triage_score, complaint, diagnosis, outcome, destination, password) VALUES (501, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, password)';
 
 
 // Function which uses the SQL_PATIENT_INFO_ALL query to retrieve all patient rows from the database.
@@ -26,7 +30,7 @@ function getPatientInfo() {
     let patient_info;
 
     try {
-        const result = dbConn.prepare(SQL_PATIENT_INFO_ALL)
+        const result = dbConn.prepare(SQL_PATIENT_INFO_ALL);
         patient_info = result.all();
     } catch (err) {
         console.log('DB Error - get all patient_info: ', err.message);
@@ -59,6 +63,28 @@ function getPatientInfoById(id) {
     return patient_info;
 }
 
+function getPatientInfoByUrl(url) {
+    let patient_info;
+
+    try {
+        // Execute the SQL
+        const result = dbConn.prepare(SQL_PATIENT_INFO_BY_URL)
+
+        // set id parameter value
+        patient_info = result.get(url);
+
+        // Catch and log errors to server side console 
+    } catch (err) {
+        console.log('DB Error - get patient info by url: ', err.message);
+    } finally {
+
+    }
+    console.log("1");
+    console.log(patient_info);
+    // return a single patient if found
+    return patient_info;
+}
+
 function getPatientInfoGeneratePassword() {
     let patient_info;
 
@@ -82,9 +108,6 @@ async function setPatientPassword() {
     var id_list = patient_password_service.generateIdList(patients);
     var password_list = patient_password_service.generatePlainTextPasswordList(patients);
     var hashed_password_list = await patient_password_service.generatePasswordList(password_list);
-    console.log("get password list");
-    console.log(id_list);
-    console.log(hashed_password_list);
 
     for (let i = 0; i < id_list.length; i++) {
 
@@ -178,10 +201,28 @@ function getLastTenTriageFive() {
 
     }
 
-
     return lastTenTriageFive;
 }
 
+// insert/create a new patient
+let insertPatient = async (patient) => {
+    let newPatient;
+
+    try {
+        const stmt = dbConn.prepare(SQL_PATIENT_INSERT);
+        stmt.run(patient.birth_year, patient.birth_month, patient.gender, patient.patient_status, patient.arrival_date, patient.arrival_time, 
+            patient.triage_date, patient.triage_time, patient.returning_visit, patient.arrival_mode, patient.referral, patient.triage_score, 
+            patient.complaint, patient.diagnosis, patient.outcome, patient.destination);
+
+            newPatient = getPatientInfoById(result.lastInsertRowid);
+    } catch (err) {
+        console.log('DB Error - insertPatient: ', err.message);
+    }
+
+    return newPatient;
+}
+
+//Cron job  for testing password propagation
 cron.schedule("*/30 * * * * *", function () {
     setPatientPassword();
     console.log("COMPLETE");
@@ -192,11 +233,13 @@ cron.schedule("*/30 * * * * *", function () {
 module.exports = {
     getPatientInfo,
     getPatientInfoById,
+    getPatientInfoByUrl,
     getLastTenTriageOne,
     getLastTenTriageTwo,
     getLastTenTriageThree,
     getLastTenTriageFour,
     getLastTenTriageFive,
     getPatientInfoGeneratePassword,
-    setPatientPassword
+    setPatientPassword,
+    insertPatient
 };

@@ -1,8 +1,10 @@
 // server.js
 
+const http = require('http');
+
 // load express as a deoendency
 const express = require('express');
-
+//const api = require('./public/src/fetchAPIHelper.js');
 // Define Express App
 const app = express();
 
@@ -13,6 +15,8 @@ const PORT = process.env.PORT || 3000;
 
 // Serve Static Assets from the public folder
 app.use(express.static('public'));
+
+
 
 // Start the server and listen for requests
 app.listen(PORT, HOST, () => {

@@ -58,5 +58,39 @@ router.get('/:id', (req, res) => {
   
   });
 
+// POST - Insert a new patient.
+// This async function sends a HTTP post request
+router.post("/", async (req, res) => {
+  // the request body contains the new patient values - copy it
+  const newPatient = req.body; // show what was copied in the console (server side)
+  console.log('HELLO! ', newPatient);
+  try {
+    // Use the service to create the new patient
+    // If all goes well, return the result 
+    result = await patient_service.addOrUpdatePatient(newPatient);
+    console.log('new: ', result);
+    res.json(result); 
+  
+  // Otherwise handle server (status 500) errors
+  } catch (err) {
+    res.status(500);
+    res.send(err.message);
+  }
+});
+
+// PUT update patient
+// Like post but patientID is provided and method = put
+router.put('/:id', async (req, res) => {
+  const patientId = req.params.id;
+  res.json(`This will update patient with id = ${patientId}`);
+});
+
+// DELETE single task.
+router.delete('/:id', async (req, res) => {
+  const patientId = req.params.id;
+  res.json(`This will delete patient with id = ${patientId}`);
+});
+
+
 // export
 module.exports = router;

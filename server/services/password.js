@@ -20,16 +20,21 @@ function generatePlainTextPasswordList(passwordPatient) {
 async function generatePasswordList(plain_text_password_list) {
   hashed_password_list = new Array();
   const saltRounds = 10;
+  var search = '/';
+  var replaceWith = '1';
 
   for (let i = 0; i < plain_text_password_list.length; i++) {
       var hashedPassword = await bcrypt.hash(plain_text_password_list[i], saltRounds);
-      hashed_password_list.push(hashedPassword);
+      var hashedPasswordReplace = hashedPassword.split(search).join(replaceWith);
+      hashed_password_list.push(hashedPasswordReplace);
   }
 
   return hashed_password_list;
 }
 
-
+function replaceAll(string, search, replace) {
+  return string.split(search).join(replace);
+}
 
 // function generatePasswordList(plain_text_password_list) {
 

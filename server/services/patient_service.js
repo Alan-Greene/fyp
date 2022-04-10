@@ -1,17 +1,9 @@
-const patient_info_repository = require('../repositories/patient_info_repository.js')
-
-const validator = require('validator');
-
+const patient_info_repository = require("../repositories/patient_info_repository.js");
+const patientValidator = require("../validators/patient_validator.js");
 // functio to validate an id
 // An id is a positive number with no sign (+,-, etc.)
 // return Not a number or else cast as Number and return
 //
-function validateId(num) {
-    if (validator.isNumeric(num, { no_symbols: true })) {
-        return Number(num);
-    }
-    return NaN;
-}
 
 
 function getPatientInfo() {
@@ -22,8 +14,8 @@ function getPatientInfo() {
 // Function to get patient by id
 function getPatientInfoById(id) {
     // validate the id
-    if (validateId(id, { no_symbols: true })) {
-        // Call the repository function to get product matching id
+    if (patientValidator.validateId(id, { no_symbols: true })) {
+        // Call the repository function to get patient matching id
         const patient_info = patient_info_repository.getPatientInfoById(id);
 
         // return the patient information
@@ -31,6 +23,12 @@ function getPatientInfoById(id) {
     } else {
         return "Invalid Id";
     }
+}
+
+// Function to get patient by url
+function getPatientInfoByUrl(url) {
+    const patient_info = patient_info_repository.getPatientInfoByUrl(url);
+    return patient_info
 }
 
 
@@ -60,16 +58,49 @@ function getLastTenTriageFive() {
     return lastTenTriageFive;
 }
 
+async function addOrUpdatePatient(patientForm) {
+    console.log("ADDORUPDATE");
+    // declare variables
+    let result;
+    result = await patient_info_repository.insertPatient(patientForm);
 
 
+    // // Call the patient validator - kept seperate to avoid clutter here
+    // let validatedPatient = patientValidator.validatePatient(patientForm);
+
+    // // If validation returned a patient object - save to database
+    // if (validatedPatient != null) {
+    //     result = await patientRepository.insertPatient(validatedPatient);
+
+    // } else {
+    //     // Patient data failed validation
+    //     result = { result: "error - invalid patient" }; // log the result
+
+    //     console.log("patientService.createPatient(): form data validate failed");
+    // } // return the newly inserted patient
+    // console.log("RESULT", result);
+    return result;
+}
+
+let updatePatient = async (patient) => {
+    return true;
+};
+
+let deletePatient = async (id) => {
+    return true;
+};
 
 
 module.exports = {
     getPatientInfo,
     getPatientInfoById,
+    getPatientInfoByUrl,
     getLastTenTriageOne,
     getLastTenTriageTwo,
     getLastTenTriageThree,
     getLastTenTriageFour,
-    getLastTenTriageFive
+    getLastTenTriageFive,
+    addOrUpdatePatient,
+    updatePatient,
+    deletePatient
 }

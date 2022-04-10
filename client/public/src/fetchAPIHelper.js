@@ -4,8 +4,8 @@
 
 // API Base URL - the server address
 const BASE_URL = 'http://localhost:5000/patient_info/';
-
 const TRIAGE_URL = 'http://localhost:5000/patient_info/triage';
+const INDIVIDUAL_URL = 'http://localhost:5000/url';
 
 // Get HTTP headers for requests to the api
 function getHeaders() {
@@ -64,6 +64,7 @@ async function getDataAsync(url, init = fetchInit()) {
 export {
     BASE_URL,
     TRIAGE_URL,
+    INDIVIDUAL_URL,
     fetchInit,
     getDataAsync
 };

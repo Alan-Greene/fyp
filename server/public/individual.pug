@@ -1,0 +1,35 @@
+extends layout.pug
+
+block content
+  .row
+    .col-sm-3
+    .col-sm-3
+      p#content Your triage score:
+    .col-sm-3
+      h1= patientData.triage_score
+    .col-sm-3
+
+  .row
+    .col-sm-3
+    .col-sm-3
+      p#content Arrival date:
+    .col-sm-3
+      h1= patientData.arrival_date
+    .col-sm-3
+
+  .row
+    .col-sm-3
+    .col-sm-3
+      p#content Arrival time:
+    .col-sm-3
+      h1= patientData.arrival_time
+    .col-sm-3
+
+  .row
+    .col-sm-3
+    .col-sm-3
+      p#content Time in the ED system:
+    .col-sm-3
+      h1= patientData.waiting
+    .col-sm-3
+

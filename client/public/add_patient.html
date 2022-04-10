@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Add a patient</title>
+
+</head>
+
+<body>
+    <div class="container-fluid">
+
+        <div class="row pt-3 pb-2">
+
+            <div class="col-sm">
+                <h1 class="main_header">Tallaght University Hospital <br>
+                    Add Patient</h1>
+            </div>
+        </div>
+
+
+        <div class="row pt-3 pb-2">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <!---1--->
+                <form action="http://localhost:5000/patient_info" method="post" id="patientForm">
+
+                    <!---<input id="_id" type="hidden" name="_id" value="0">--->
+
+
+                    <div class="form-group">
+                        <label for="birth_year">Birth year</label>
+                        <input id="birth_year" type="number" class="form-control" name="birth_year"
+                            placeholder="YYYY"></input>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label for="birth_month">Birth month</label>
+                        <select id="birth_month" type="number" class="form-control" name="birth_month">
+                            <option selected disabled hidden>Select birth month</option>
+                            <option value="1">January</option>
+                            <option value="2">Febuary</option>
+                            <option value="3">March</option>
+                            <option value="4">April</option>
+                            <option value="5">May</option>
+                            <option value="6">June</option>
+                            <option value="7">July</option>
+                            <option value="8">August</option>
+                            <option value="9">September</option>
+                            <option value="10">October</option>
+                            <option value="11">Novermber</option>
+                            <option value="12">December</option>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <input id="gender" type="text" class="form-control" name="gender"
+                            placeholder="M/F/Other"></input>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label for="patient_status">Patient status</label>
+                        <input id="patient_status" type="text" class="form-control" name="patient_status"
+                            placeholder="eg: Medical card"></input>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label for="arrival_date">Arrival date</label>
+                        <select id="arrival_date" type="date" class="form-control" name="arrival_date">
+                            <option selected disabled hidden>Choose arrival date (YYYY-MM-DD)</option>
+                        </select>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label for="arrival_time">Choose arrival time</label>
+                        <input id="arrival_time" type="time" step="2" class="form-control" name="arrival_time">
+                        </input>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label for="triage_date">Triage date</label>
+                        <select id="triage_date" type="date" class="form-control" name="triage_date">
+                            <option selected disabled hidden>Choose triage date (YYYY-MM-DD)</option>
+                        </select>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label for="triage_time">Choose triage time</label>
+                        <input id="triage_time" type="time" step="2" class="form-control" name="triage_time">
+                        </input>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="checkout_date">Checkout date</label>
+                        <select id="checkout_date" type="date" class="form-control" name="checkout_date">
+                            <option selected disabled hidden>Choose checkout date (YYYY-MM-DD)</option>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="checkout_time">Choose checkout time</label>
+                        <input id="checkout_time" type="time" step="2" class="form-control" name="checkout_time">
+                        </input>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="returning_visit">Returning visit</label>
+                        <select id="returning_visit" type="number" class="form-control" name="returning_visit">
+                            <option selected disabled hidden>Select yes or no</option>
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+
+                        </select>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label for="arrival_mode">Arrival mode</label>
+                        <select id="arrival_mode" type="text" class="form-control" name="arrival_mode">
+                            <option selected disabled hidden>Select arrival mode</option>
+                            <option value="Bus">Bus</option>
+                            <option value="Car">Car</option>
+                            <option value="Motor bike">Motor bike</option>
+                            <option value="Taxi">Taxi</option>
+                            <option value="Train">Train</option>
+                            <option value="On foot">On foot</option>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="referral">Referral</label>
+                        <input id="referral" type="text" class="form-control" name="referral"
+                            placeholder="eg: AMNCH Tallaght"></input>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="triage_score">Triage score</label>
+                        <select id="triage_score" type="number" class="form-control" name="triage_score">
+                            <option selected disabled hidden>Select Triage category</option>
+                            <option value="1">Category One</option>
+                            <option value="2">Category Two</option>
+                            <option value="3">Category Three</option>
+                            <option value="4">Category Four</option>
+                            <option value="5">Category Five</option>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="complaint">Complaint</label>
+                        <input id="complaint" type="text" class="form-control" name="complaint"
+                            placeholder="eg: Headache"></input>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="diagnosis">Diagnosis</label>
+                        <input id="diagnosis" type="text" class="form-control" name="diagnosis"
+                            placeholder="eg: Left arm cut"></input>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="outcome">Outcome</label>
+                        <input id="outcome" type="text" class="form-control" name="outcome"
+                            placeholder="eg: Admitted"></input>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label for="destination">Destination</label>
+                        <input id="destination" type="text" class="form-control" name="destination"
+                            placeholder="eg: Maple ward"></input>
+                    </div>
+
+                    <br>
+
+                    <input type="submit" value="Submit">
+                     <!---
+                    <button id="formSubmit" type="button" class="btn btn-success" style="float: right;">Save
+                        patient</button>2--->
+
+                </form>
+            </div>
+
+            <!---2--->
+            <div class="col-sm-4"></div>
+        </div>
+    </div>
+    </div>
+
+    </div>
+    </div>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+        integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        // set a variable
+        var today = moment().format('YYYY-MM-DD');
+        var yesterday = moment().subtract(1, 'days').format('YYYY-MM-DD');
+        var tomorrow = moment().add(1, 'days').format('YYYY-MM-DD');
+
+        var arrival_dates = document.getElementById("arrival_date"), arr = [yesterday, today, tomorrow];
+
+        for (var i = 0; i < arr.length; i++) {
+            var option = document.createElement("OPTION"),
+                txt = document.createTextNode(arr[i]);
+            option.appendChild(txt);
+            arrival_dates.insertBefore(option, arrival_dates.lastChild);
+        }
+    </script>
+
+    <script>
+        // set a variable
+        var today = moment().format('YYYY-MM-DD');
+        var yesterday = moment().subtract(1, 'days').format('YYYY-MM-DD');
+        var tomorrow = moment().add(1, 'days').format('YYYY-MM-DD');
+
+        var triage_dates = document.getElementById("triage_date"), arr = [yesterday, today, tomorrow];
+
+        for (var i = 0; i < arr.length; i++) {
+            var option = document.createElement("OPTION"),
+                txt = document.createTextNode(arr[i]);
+            option.appendChild(txt);
+            triage_dates.insertBefore(option, triage_dates.lastChild);
+        }
+    </script>
+
+    <script>
+        // set a variable
+        var today = moment().format('YYYY-MM-DD');
+        var yesterday = moment().subtract(1, 'days').format('YYYY-MM-DD');
+        var tomorrow = moment().add(1, 'days').format('YYYY-MM-DD');
+
+        var checkout_dates = document.getElementById("checkout_date"), arr = [yesterday, today, tomorrow];
+
+        for (var i = 0; i < arr.length; i++) {
+            var option = document.createElement("OPTION"),
+                txt = document.createTextNode(arr[i]);
+            option.appendChild(txt);
+            checkout_dates.insertBefore(option, checkout_dates.lastChild);
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/style.css">
+
+</body>
+
+
+</html>
