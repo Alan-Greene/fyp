@@ -1,17 +1,14 @@
-const patient_info_repository = require('../repositories/patient_info_repository.js')
+//const patient_info_repository = require('../repositories/patient_info_repository.js')
 const bcrypt = require('bcrypt');
-
-
-//const validator = require('validator');
-
 
 function generatePlainTextPasswordList(passwordPatient) {
 
   var plain_text_password_list = new Array();
 
   for (let i = 0; i < passwordPatient.length; i++) {
-
+    //Crete a plaintext password from patient data that will be hased, salted and stored in the database
     var stringPassword = (passwordPatient[i].arrival_date + '' + passwordPatient[i].arrival_time + '' + passwordPatient[i].birth_month + '' + passwordPatient[i].birth_year);
+    //Add the plain text password to a list which will be used by the hashing function generatePasswordList(plain_text_password_list)
     plain_text_password_list.push(stringPassword);
   }
   return plain_text_password_list;
@@ -24,51 +21,20 @@ async function generatePasswordList(plain_text_password_list) {
   var replaceWith = '1';
 
   for (let i = 0; i < plain_text_password_list.length; i++) {
+      //Use the bcrypt library to generate a hashed password from the plain text password
       var hashedPassword = await bcrypt.hash(plain_text_password_list[i], saltRounds);
+
+      //Remove any occurances of / in the password to allow for url querying
       var hashedPasswordReplace = hashedPassword.split(search).join(replaceWith);
+
+      //Add the password to the password list
       hashed_password_list.push(hashedPasswordReplace);
   }
 
   return hashed_password_list;
 }
 
-function replaceAll(string, search, replace) {
-  return string.split(search).join(replace);
-}
-
-// function generatePasswordList(plain_text_password_list) {
-
-//   //console.log("hashed password list before");
-
-//   hashed_password_list = new Array();
-
-//   for (let i = 0; i < plain_text_password_list.length; i++) {
-
-//     console.log(plain_text_password_list[i]);
-
-//     var hashedPassword = bcrypt.hash(plain_text_password_list[i], saltRounds, (err, hash) => { });
-//     console.log(`HASHED PASSWORD: ${hashedPassword}`);
-//     hashed_password_list.push(hashedPassword);
-
-//   }
-
-//   console.log("hashed password list after");
-
-//   return hashed_password_list;
-// }
-
-// need to improve this time to hash
-// String.prototype.hashCode = function () {
-//   var hash = 0, i, chr;
-//   if (this.length === 0) return hash;
-//   for (i = 0; i < this.length; i++) {
-//     chr = this.charCodeAt(i);
-//     hash = ((hash << 5) - hash) + chr;
-//     hash |= 0; // Convert to 32bit integer
-//   }
-//   return hash;
-// };
-
+//Function generates a list of patient IDs to be used in conjunction with the password list
 function generateIdList(passwordPatient) {
 
   var id_list = new Array();

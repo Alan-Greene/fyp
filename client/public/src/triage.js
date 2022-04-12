@@ -1,76 +1,5 @@
-// import everything from fetchAPI.js
-// This will allow resources to be referenced as api.BASE_URL, etc.
+// import from fetchAPI.js as api to allow resources to be referenced as api.BASE_URL, etc.
 import * as api from './fetchAPIHelper.js';
-
-// Call this function when page is loaded
-/*
-function displayPatientsTriageOne(patients) {
-
-    const rows = patients.map((patient) => {
-        let row =
-            `<tr>
-                <td>${patient.calculated_times}</td>
-            </tr>`;
-        return row;
-    });
-
-    document.getElementById("triageOne").innerHTML = rows.join("");
-}
-
-function displayPatientsTriageTwo(patients) {
-
-    const rows = patients.map((patient) => {
-        let row =
-            `<tr>
-                <td>${patient.calculated_times}</td>
-            </tr>`;
-        return row;
-    });
-
-    document.getElementById("triageTwo").innerHTML = rows.join("");
-}
-
-function displayPatientsTriageThree(patients) {
-
-    const rows = patients.map((patient) => {
-        let row =
-            `<tr>
-                <td>${patient.calculated_times}</td>
-            </tr>`;
-        return row;
-    });
-
-    document.getElementById("triageThree").innerHTML = rows.join("");
-}
-
-function displayPatientsTriageFour(patients) {
-
-    const rows = patients.map((patient) => {
-        let row =
-            `<tr>
-                <td>${patient.calculated_times}</td>
-            </tr>`;
-        return row;
-    });
-
-    document.getElementById("triageFour").innerHTML = rows.join("");
-}
-
-function displayPatientsTriageFive(patients) {
-
-    const rows = patients.map((patient) => {
-        let row =
-            `<tr>
-                <td>${patient.calculated_times}</td>
-            </tr>`;
-        return row;
-    });
-
-    document.getElementById("triageFive").innerHTML = rows.join("");
-}
-
-*/
-//////////////////////////////////////////////////////
 
 function displayAverageTimeTriageOne(average_time) {
     document.getElementById("triageOneAverage").innerHTML = `${average_time}`;
@@ -96,22 +25,109 @@ function displayAverageTimeTriageFive(average_time) {
 
 function displayAverageTriageTimeTriageOne(average_time) {
     document.getElementById("triageOneTriageAverage").innerHTML = `${average_time}`;
+    calculateDelayDisplay1(average_time, 10, 11);
 }
 
 function displayAverageTriageTimeTriageTwo(average_time) {
     document.getElementById("triageTwoTriageAverage").innerHTML = `${average_time}`;
+    calculateDelayDisplay2(average_time, 7, 8);
 }
 
 function displayAverageTriageTimeTriageThree(average_time) {
     document.getElementById("triageThreeTriageAverage").innerHTML = `${average_time}`;
+    calculateDelayDisplay3(average_time, 7, 8);
 }
 
 function displayAverageTriageTimeTriageFour(average_time) {
     document.getElementById("triageFourTriageAverage").innerHTML = `${average_time}`;
+    calculateDelayDisplay4(average_time, 7, 8);
 }
 
 function displayAverageTriageTimeTriageFive(average_time) {
     document.getElementById("triageFiveTriageAverage").innerHTML = `${average_time}`;
+    calculateDelayDisplay5(average_time, 7, 8);
+}
+
+//////////////////////////////////////////////////////
+
+function calculateDelayDisplay1(average_time, ontime_number, delayed_number) {
+    const timeArray = average_time.split(" ");
+    const hoursNumber = parseInt(timeArray[0]);
+
+    if (hoursNumber <= ontime_number) {
+        document.getElementById("DisplayOne").classList.add("ontime");
+        document.getElementById("DisplayOne").innerHTML = "NO DELAY";
+    } else if (hoursNumber > ontime_number && hoursNumber <= delayed_number) {
+        document.getElementById("DisplayOne").classList.add("delayed");
+        document.getElementById("DisplayOne").innerHTML = "SHORT DELAY";
+    } else {
+        document.getElementById("DisplayOne").classList.add("verydelayed");
+        document.getElementById("DisplayOne").innerHTML = "LONG DELAY";
+    }
+}
+
+function calculateDelayDisplay2(average_time, ontime_number, delayed_number) {
+    const timeArray = average_time.split(" ");
+    const hoursNumber = parseInt(timeArray[0]);
+
+    if (hoursNumber <= ontime_number) {
+        document.getElementById("DisplayTwo").classList.add("ontime");
+        document.getElementById("DisplayTwo").innerHTML = "NO DELAY";
+    } else if (hoursNumber > ontime_number && hoursNumber <= delayed_number) {
+        document.getElementById("DisplayTwo").classList.add("delayed");
+        document.getElementById("DisplayTwo").innerHTML = "SHORT DELAY";
+    } else {
+        document.getElementById("DisplayTwo").classList.add("verydelayed");
+        document.getElementById("DisplayTwo").innerHTML = "LONG DELAY";
+    }
+}
+
+function calculateDelayDisplay3(average_time, ontime_number, delayed_number) {
+    const timeArray = average_time.split(" ");
+    const hoursNumber = parseInt(timeArray[0]);
+
+    if (hoursNumber <= ontime_number) {
+        document.getElementById("DisplayThree").classList.add("ontime");
+        document.getElementById("DisplayThree").innerHTML = "NO DELAY";
+    } else if (hoursNumber > ontime_number && hoursNumber <= delayed_number) {
+        document.getElementById("DisplayThree").classList.add("delayed");
+        document.getElementById("DisplayThree").innerHTML = "SHORT DELAY";
+    } else {
+        document.getElementById("DisplayThree").classList.add("verydelayed");
+        document.getElementById("DisplayThree").innerHTML = "LONG DELAY";
+    }
+}
+
+function calculateDelayDisplay4(average_time, ontime_number, delayed_number) {
+    const timeArray = average_time.split(" ");
+    const hoursNumber = parseInt(timeArray[0]);
+
+    if (hoursNumber <= ontime_number) {
+        document.getElementById("DisplayFour").classList.add("ontime");
+        document.getElementById("DisplayFour").innerHTML = "NO DELAY";
+    } else if (hoursNumber > ontime_number && hoursNumber <= delayed_number) {
+        document.getElementById("DisplayFour").classList.add("delayed");
+        document.getElementById("DisplayFour").innerHTML = "SHORT DELAY";
+    } else {
+        document.getElementById("DisplayFour").classList.add("verydelayed");
+        document.getElementById("DisplayFour").innerHTML = "LONG DELAY";
+    }
+}
+
+function calculateDelayDisplay5(average_time, ontime_number, delayed_number) {
+    const timeArray = average_time.split(" ");
+    const hoursNumber = parseInt(timeArray[0]);
+
+    if (hoursNumber <= ontime_number) {
+        document.getElementById("DisplayFive").classList.add("ontime");
+        document.getElementById("DisplayFive").innerHTML = "NO DELAY";
+    } else if (hoursNumber > ontime_number && hoursNumber <= delayed_number) {
+        document.getElementById("DisplayFive").classList.add("delayed");
+        document.getElementById("DisplayFive").innerHTML = "SHORT DELAY";
+    } else {
+        document.getElementById("DisplayFive").classList.add("verydelayed");
+        document.getElementById("DisplayFive").innerHTML = "LONG DELAY";
+    }
 }
 
 //////////////////////////////////////////////////////
@@ -150,16 +166,8 @@ async function loadPatientInfo() {
         displayAverageTriageTimeTriageThree(triageListThreeTriageAverage);
         displayAverageTriageTimeTriageFour(triageListFourTriageAverage);
         displayAverageTriageTimeTriageFive(triageListFiveTriageAverage);
-
-        //displayPatientsTriageOne(triageListOne);
-        //displayPatientsTriageTwo(triageListTwo);
-        //displayPatientsTriageThree(triageListThree);
-        //displayPatientsTriageFour(triageListFour);
-        //displayPatientsTriageFive(triageListFive);
-
     }
 }
-
 
 function addTimeToPatientObject(timePatients) {
 
@@ -167,14 +175,8 @@ function addTimeToPatientObject(timePatients) {
     for (let i = 0; i < timePatients.length; i++) {
         for (var j = 0; j < timePatients[i].length; j++) {
 
-            console.log(timePatients[i][j].arrival_date);
-            console.log(timePatients[i][j].arrival_time);
-            
-
             var stringDateCheckIn = (timePatients[i][j].arrival_date + ' ' + timePatients[i][j].arrival_time);
             var dateCheckIn = new Date(stringDateCheckIn)
-
-            console.log(timePatients[i][j].arrival_time);
 
             var stringDateCheckOut = (timePatients[i][j].checkout_date + ' ' + timePatients[i][j].checkout_time);
             var dateCheckOut = new Date(stringDateCheckOut)
@@ -196,21 +198,13 @@ function addTriageTimeToPatientObject(timePatients) {
     for (let i = 0; i < timePatients.length; i++) {
         for (var j = 0; j < timePatients[i].length; j++) {
 
-            console.log(timePatients[i][j].arrival_date);
-            console.log(timePatients[i][j].arrival_time);
-            
-
             var stringDateCheckIn = (timePatients[i][j].arrival_date + ' ' + timePatients[i][j].arrival_time);
             var dateCheckIn = new Date(stringDateCheckIn)
-
-            console.log(timePatients[i][j].arrival_time);
 
             var stringDateTriageTime = (timePatients[i][j].triage_date + ' ' + timePatients[i][j].triage_time);
             var dateTriageTime = new Date(stringDateTriageTime)
 
             let time_diff_triage = addTimeToPatientObjectCalc(dateCheckIn, dateTriageTime);
-            //calculatedTimes.push(time_diff);
-            //ids.push(timePatients[i]._id);
 
             timePatients[i][j].calculated_times_triage = time_diff_triage;
         }
@@ -256,15 +250,15 @@ function generateAverage(patientList) {
 
     for (let i = 0; i < patients.length; i++) {
 
-            var stringDateCheckIn = (patients[i].arrival_date + ' ' + patients[i].arrival_time);
-            var dateCheckIn = new Date(stringDateCheckIn)
+        var stringDateCheckIn = (patients[i].arrival_date + ' ' + patients[i].arrival_time);
+        var dateCheckIn = new Date(stringDateCheckIn)
 
-            var stringDateCheckOut = (patients[i].checkout_date + ' ' + patients[i].checkout_time);
-            var dateCheckOut = new Date(stringDateCheckOut)
+        var stringDateCheckOut = (patients[i].checkout_date + ' ' + patients[i].checkout_time);
+        var dateCheckOut = new Date(stringDateCheckOut)
 
-            diffInMilliSeconds = generateMillisecondsAverageCalc(dateCheckIn, dateCheckOut) / 10;
+        diffInMilliSeconds = generateMillisecondsAverageCalc(dateCheckIn, dateCheckOut) / 10;
 
-            total_milliseconds += diffInMilliSeconds;
+        total_milliseconds += diffInMilliSeconds;
     }
 
     const days = Math.floor(total_milliseconds / 86400);
@@ -300,15 +294,15 @@ function generateAverageTriage(patientList) {
 
     for (let i = 0; i < patients.length; i++) {
 
-            var stringDateCheckIn = (patients[i].arrival_date + ' ' + patients[i].arrival_time);
-            var dateCheckIn = new Date(stringDateCheckIn)
+        var stringDateCheckIn = (patients[i].arrival_date + ' ' + patients[i].arrival_time);
+        var dateCheckIn = new Date(stringDateCheckIn)
 
-            var stringDateTriage = (patients[i].triage_date + ' ' + patients[i].triage_time);
-            var dateTriage = new Date(stringDateTriage)
+        var stringDateTriage = (patients[i].triage_date + ' ' + patients[i].triage_time);
+        var dateTriage = new Date(stringDateTriage)
 
-            diffInMilliSeconds = generateMillisecondsAverageCalc(dateCheckIn, dateTriage) / 10;
+        diffInMilliSeconds = generateMillisecondsAverageCalc(dateCheckIn, dateTriage) / 10;
 
-            total_milliseconds += diffInMilliSeconds;
+        total_milliseconds += diffInMilliSeconds;
     }
 
     const days = Math.floor(total_milliseconds / 86400);
@@ -332,12 +326,10 @@ function generateAverageTriage(patientList) {
     difference += (minutes === 0 || hours === 1) ? `${minutes} minutes` : `${minutes} minutes`;
 
     return difference;
-
 }
 
 function generateMillisecondsAverageCalc(dateCheckOut, dateRegistration) {
     let diffInMilliSeconds = Math.abs(dateCheckOut - dateRegistration) / 1000;
-    //console.log(diffInMilliSeconds);
     return diffInMilliSeconds;
 }
 
@@ -368,11 +360,6 @@ function getTriageFiveList(triageLists) {
 }
 
 export {
-    //displayPatientsTriageOne,
-    //displayPatientsTriageTwo,
-    //displayPatientsTriageThree,
-    //displayPatientsTriageFour,
-    //displayPatientsTriageFive,
     addTriageTimeToPatientObject,
     generateAverageTriage,
     generateMillisecondsAverageCalc,

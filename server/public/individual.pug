@@ -12,7 +12,7 @@ block content
   .row
     .col-sm-3
     .col-sm-3
-      p#content Arrival date:
+      p#content Registration date:
     .col-sm-3
       h1= patientData.arrival_date
     .col-sm-3
@@ -20,7 +20,7 @@ block content
   .row
     .col-sm-3
     .col-sm-3
-      p#content Arrival time:
+      p#content Registration time:
     .col-sm-3
       h1= patientData.arrival_time
     .col-sm-3
@@ -28,8 +28,7 @@ block content
   .row
     .col-sm-3
     .col-sm-3
-      p#content Time in the ED system:
+      p#content Time since registration:
     .col-sm-3
-      h1= patientData.waiting
+      h1= waitingTimeCalc
     .col-sm-3
-

@@ -92,19 +92,30 @@ label {
   }
   label:after { content: ": " }
 
-.ontime::before {
+.ontime {
   content: "On time";
   height: 40px;
   background: green;
-    
+  text-align: center;
+  font-size: 25px;
+  font-weight: bolder;
+  color: #ffffff;
 }
 
 .delayed {
   height: 40px;
   background: orange;
+  text-align: center;
+  font-size: 25px;
+  font-weight: bolder;
+  color: #ffffff;
 }
 
 .verydelayed {
   height: 40px;
   background: red;
+  text-align: center;
+  font-size: 25px;
+  font-weight: bolder;
+  color: #ffffff;
 }

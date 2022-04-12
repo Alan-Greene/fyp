@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const { json } = require('express');
 const patient_service = require('../services/patient_service.js');
+const moment = require('moment');
+
 
 // router.get('/:url', (req, res) => {
 
@@ -31,13 +33,10 @@ router.get('/individual/:url', (req, res) => {
 
   patientData = loadIndividualPatientInfo(req.params.url);
 
-  //const waiting_time = timenow - patientData.arrival_time;
-  if (patientData.triage_date & patientData.triage_time !== null){
-     
-  }
+  let waitingTimeCalc = calculateCurrentWaitingTime(patientData);
 
   res.setHeader('content-type', 'text/html');
-  res.render('../public/individual.pug', { patient: patientData});
+  res.render('../public/individual.pug', { patient: patientData, waitingTimeCalc: waitingTimeCalc});
 
 })
 
@@ -56,6 +55,51 @@ function loadIndividualPatientInfo(url) {
 
   
   }
+
+function calculateCurrentWaitingTime(patientData) {
+
+  var DateCurrentDateTime = moment().toDate();
+
+  console.log(DateCurrentDateTime);
+
+  var stringPatientDateTime = (patientData.arrival_date + ' ' + patientData.arrival_time);
+  var datePatientDateTime = new Date(stringPatientDateTime)
+
+  console.log(datePatientDateTime);
+
+  let timeWaiting = addPatientWaitingTime(DateCurrentDateTime, datePatientDateTime);
+
+  return timeWaiting
+
+}
+
+function addPatientWaitingTime(DateCurrentDateTime, datePatientDateTime) {
+  let diffInMilliSeconds = Math.abs(DateCurrentDateTime - datePatientDateTime) / 1000;
+
+  // calculate days as a number
+  const days = Math.floor(diffInMilliSeconds / 86400);
+  diffInMilliSeconds -= days * 86400;
+
+  // calculate hours as a number
+  const hours = Math.floor(diffInMilliSeconds / 3600) % 24;
+  diffInMilliSeconds -= hours * 3600;
+
+  // calculate minutes as a number
+  const minutes = Math.floor(diffInMilliSeconds / 60) % 60;
+  diffInMilliSeconds -= minutes * 60;
+
+  //Convert the numbers into a text string called difference for display
+  let difference = '';
+  if (days > 0) {
+      difference += (days === 1) ? `${days} day, ` : `${days} days, `;
+  }
+
+  difference += (hours === 0 || hours === 1) ? `${hours} hour,    ` : `${hours} hours,    `;
+
+  difference += (minutes === 0 || hours === 1) ? `${minutes} minutes` : `${minutes} minutes`;
+
+  return difference;
+}
 
 // export
 module.exports = router;
