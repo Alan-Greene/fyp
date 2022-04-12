@@ -25,39 +25,39 @@ function displayAverageTimeTriageFive(average_time) {
 
 function displayAverageTriageTimeTriageOne(average_time) {
     document.getElementById("triageOneTriageAverage").innerHTML = `${average_time}`;
-    calculateDelayDisplay1(average_time, 10, 11);
+    calculateDelayDisplay1(average_time, 5, 10);
 }
 
 function displayAverageTriageTimeTriageTwo(average_time) {
     document.getElementById("triageTwoTriageAverage").innerHTML = `${average_time}`;
-    calculateDelayDisplay2(average_time, 7, 8);
+    calculateDelayDisplay2(average_time, 5, 15);
 }
 
 function displayAverageTriageTimeTriageThree(average_time) {
     document.getElementById("triageThreeTriageAverage").innerHTML = `${average_time}`;
-    calculateDelayDisplay3(average_time, 7, 8);
+    calculateDelayDisplay3(average_time, 1, 2);
 }
 
 function displayAverageTriageTimeTriageFour(average_time) {
     document.getElementById("triageFourTriageAverage").innerHTML = `${average_time}`;
-    calculateDelayDisplay4(average_time, 7, 8);
+    calculateDelayDisplay4(average_time, 1, 2);
 }
 
 function displayAverageTriageTimeTriageFive(average_time) {
     document.getElementById("triageFiveTriageAverage").innerHTML = `${average_time}`;
-    calculateDelayDisplay5(average_time, 7, 8);
+    calculateDelayDisplay5(average_time, 1, 2);
 }
 
 //////////////////////////////////////////////////////
 
 function calculateDelayDisplay1(average_time, ontime_number, delayed_number) {
     const timeArray = average_time.split(" ");
-    const hoursNumber = parseInt(timeArray[0]);
+    const minutesNumber = parseInt(timeArray[2]);
 
-    if (hoursNumber <= ontime_number) {
+    if (minutesNumber <= ontime_number) {
         document.getElementById("DisplayOne").classList.add("ontime");
         document.getElementById("DisplayOne").innerHTML = "NO DELAY";
-    } else if (hoursNumber > ontime_number && hoursNumber <= delayed_number) {
+    } else if (minutesNumber > ontime_number && minutesNumber < delayed_number) {
         document.getElementById("DisplayOne").classList.add("delayed");
         document.getElementById("DisplayOne").innerHTML = "SHORT DELAY";
     } else {
@@ -68,12 +68,12 @@ function calculateDelayDisplay1(average_time, ontime_number, delayed_number) {
 
 function calculateDelayDisplay2(average_time, ontime_number, delayed_number) {
     const timeArray = average_time.split(" ");
-    const hoursNumber = parseInt(timeArray[0]);
+    const minutesNumber = parseInt(timeArray[2]);
 
-    if (hoursNumber <= ontime_number) {
+    if (minutesNumber <= ontime_number) {
         document.getElementById("DisplayTwo").classList.add("ontime");
         document.getElementById("DisplayTwo").innerHTML = "NO DELAY";
-    } else if (hoursNumber > ontime_number && hoursNumber <= delayed_number) {
+    } else if (minutesNumber > ontime_number && minutesNumber < delayed_number) {
         document.getElementById("DisplayTwo").classList.add("delayed");
         document.getElementById("DisplayTwo").innerHTML = "SHORT DELAY";
     } else {
@@ -86,10 +86,10 @@ function calculateDelayDisplay3(average_time, ontime_number, delayed_number) {
     const timeArray = average_time.split(" ");
     const hoursNumber = parseInt(timeArray[0]);
 
-    if (hoursNumber <= ontime_number) {
+    if (hoursNumber < ontime_number) {
         document.getElementById("DisplayThree").classList.add("ontime");
         document.getElementById("DisplayThree").innerHTML = "NO DELAY";
-    } else if (hoursNumber > ontime_number && hoursNumber <= delayed_number) {
+    } else if (hoursNumber >= ontime_number && hoursNumber < delayed_number) {
         document.getElementById("DisplayThree").classList.add("delayed");
         document.getElementById("DisplayThree").innerHTML = "SHORT DELAY";
     } else {
@@ -102,10 +102,10 @@ function calculateDelayDisplay4(average_time, ontime_number, delayed_number) {
     const timeArray = average_time.split(" ");
     const hoursNumber = parseInt(timeArray[0]);
 
-    if (hoursNumber <= ontime_number) {
+    if (hoursNumber < ontime_number) {
         document.getElementById("DisplayFour").classList.add("ontime");
         document.getElementById("DisplayFour").innerHTML = "NO DELAY";
-    } else if (hoursNumber > ontime_number && hoursNumber <= delayed_number) {
+    } else if (hoursNumber >= ontime_number && hoursNumber < delayed_number) {
         document.getElementById("DisplayFour").classList.add("delayed");
         document.getElementById("DisplayFour").innerHTML = "SHORT DELAY";
     } else {
@@ -118,10 +118,10 @@ function calculateDelayDisplay5(average_time, ontime_number, delayed_number) {
     const timeArray = average_time.split(" ");
     const hoursNumber = parseInt(timeArray[0]);
 
-    if (hoursNumber <= ontime_number) {
+    if (hoursNumber < ontime_number) {
         document.getElementById("DisplayFive").classList.add("ontime");
         document.getElementById("DisplayFive").innerHTML = "NO DELAY";
-    } else if (hoursNumber > ontime_number && hoursNumber <= delayed_number) {
+    } else if (hoursNumber >= ontime_number && hoursNumber < delayed_number) {
         document.getElementById("DisplayFive").classList.add("delayed");
         document.getElementById("DisplayFive").innerHTML = "SHORT DELAY";
     } else {

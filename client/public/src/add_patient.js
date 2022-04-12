@@ -60,8 +60,9 @@ function getPatientForm() {
         document.getElementById('complaint').value,
         document.getElementById('diagnosis').value,
         document.getElementById('outcome').value,
-        document.getElementById('destination').value
-
+        document.getElementById('destination').value,
+        document.getElementById('phone_number').value,
+        document.getElementById('password').value
     );
 
 }

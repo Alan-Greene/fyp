@@ -1,6 +1,6 @@
 function Patient(birth_year, birth_month, gender, patient_status, arrival_date, 
                  arrival_time, triage_date, triage_time, checkout_date, checkout_time, returning_visit, 
-                 arrival_mode, referral, triage_score, complaint, diagnosis, outcome, destination) {
+                 arrival_mode, referral, triage_score, complaint, diagnosis, outcome, destination, phone_number, password) {
     //this._id = id
     this.birth_year = birth_year
     this.birth_month = birth_month
@@ -20,6 +20,8 @@ function Patient(birth_year, birth_month, gender, patient_status, arrival_date,
     this.diagnosis = diagnosis
     this.outcome = outcome
     this.destination = destination
+    this.phone_number = phone_number
+    this.password = password
 };
 
 export {

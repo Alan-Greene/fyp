@@ -22,7 +22,7 @@ const SQL_PATIENT_SET_PASSWORD = 'UPDATE patient_info SET password = ? WHERE _id
 
 const SQL_PATIENT_INFO_BY_URL = 'SELECT _id, triage_score, arrival_date, arrival_time, triage_date, triage_time, checkout_date, checkout_time FROM patient_info WHERE password = ?;';
 
-const SQL_PATIENT_INSERT = 'INSERT INTO patient_info (_id, birth_year, birth_month, gender, patient_status, arrival_date, arrival_time, triage_date, triage_time, checkout_date, checkout_time, returning_visit, arrival_mode, referral, triage_score, complaint, diagnosis, outcome, destination, password) VALUES (501, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, password)';
+const SQL_PATIENT_INSERT = 'INSERT INTO patient_info (birth_year, birth_month, gender, patient_status, arrival_date, arrival_time, triage_date, triage_time, checkout_date, checkout_time, returning_visit, arrival_mode, referral, triage_score, complaint, diagnosis, outcome, destination, phone_number, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
 
 
 // Function which uses the SQL_PATIENT_INFO_ALL query to retrieve all patient rows from the database.
@@ -211,10 +211,9 @@ let insertPatient = async (patient) => {
     try {
         const stmt = dbConn.prepare(SQL_PATIENT_INSERT);
         stmt.run(patient.birth_year, patient.birth_month, patient.gender, patient.patient_status, patient.arrival_date, patient.arrival_time, 
-            patient.triage_date, patient.triage_time, patient.returning_visit, patient.arrival_mode, patient.referral, patient.triage_score, 
-            patient.complaint, patient.diagnosis, patient.outcome, patient.destination);
+            patient.triage_date, patient.triage_time, patient.checkout_date, patient.checkout_time, patient.returning_visit, patient.arrival_mode, patient.referral, patient.triage_score, 
+            patient.complaint, patient.diagnosis, patient.outcome, patient.destination, patient.phone_number, patient.password);
 
-            newPatient = getPatientInfoById(result.lastInsertRowid);
     } catch (err) {
         console.log('DB Error - insertPatient: ', err.message);
     }
