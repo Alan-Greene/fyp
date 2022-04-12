@@ -6,7 +6,7 @@ const moment = require('moment');
 
 // router.get('/:url', (req, res) => {
 
-  
+
 //   const url = req.params.url;
 
 //   console.log(url);
@@ -33,48 +33,49 @@ router.get('/individual/:url', (req, res) => {
 
   patientData = loadIndividualPatientInfo(req.params.url);
 
+  //When passing the patientData object into the calculateCurrentWaitingTime fucntion, it logs as undefined, but still has it's object attributes, further investigation needed.
+  //Solution - In the layout.pug file I had set the body to have a background image. But the image was being sent in the HTTP request body along with the URL, essentially sending two requests. Fun 45 minutes to find this.
   let waitingTimeCalc = calculateCurrentWaitingTime(patientData);
 
   res.setHeader('content-type', 'text/html');
-  res.render('../public/individual.pug', { patient: patientData, waitingTimeCalc: waitingTimeCalc});
+  res.render('../public/individual.pug', { patient: patientData, waitingTimeCalc: waitingTimeCalc });
 
 })
 
 function loadIndividualPatientInfo(url) {
-
   const result = patient_service.getPatientInfoByUrl(url);
   return result;
-
-
-  //   console.log("1", window.location.href);
-  //   const patients = await api.getDataAsync(`${api.INDIVIDUAL_URL}`);
-  //   console.log(`${api.INDIVIDUAL_URL}/$2b$10$IX9eamTVNhkc2Hmq.IKzI.iVXENsJWHdlhNA1625t65QsNBaa8LmG`);
-  //   console.log(typeof(patients));
-  //   //addTimeToPatientObject(patients);
-  //   displayPatients(patients);
-
-  
-  }
+}
 
 function calculateCurrentWaitingTime(patientData) {
 
-  var DateCurrentDateTime = moment().toDate();
+  /*
+  
+  if(patientData.arrival_date === undefined) {
+    console.log("patientData.arrival_date is `undefined`");
+  } else {
+    console.log("HERE:", patientData.arrival_date);
+  }
+  if(!patientData.hasOwnProperty('arrival_date')) {
+    console.log("arrival_date does not exist");
+  } else {
+    console.log("arrival_date exists");
+  }
+  console.log(typeof(patientData.arrival_date));
+  */
 
-  console.log(DateCurrentDateTime);
+  console.log(typeof(patientData));
 
-  var stringPatientDateTime = (patientData.arrival_date + ' ' + patientData.arrival_time);
+  var stringPatientDateTime = patientData.arrival_date + ' ' + patientData.arrival_time;
   var datePatientDateTime = new Date(stringPatientDateTime)
-
-  console.log(datePatientDateTime);
-
-  let timeWaiting = addPatientWaitingTime(DateCurrentDateTime, datePatientDateTime);
-
+  var dateCurrentDateTime = moment().toDate();
+  let timeWaiting = addPatientWaitingTime(dateCurrentDateTime, datePatientDateTime);
   return timeWaiting
 
 }
 
-function addPatientWaitingTime(DateCurrentDateTime, datePatientDateTime) {
-  let diffInMilliSeconds = Math.abs(DateCurrentDateTime - datePatientDateTime) / 1000;
+function addPatientWaitingTime(dateCurrentDateTime, datePatientDateTime) {
+  let diffInMilliSeconds = Math.abs(dateCurrentDateTime - datePatientDateTime) / 1000;
 
   // calculate days as a number
   const days = Math.floor(diffInMilliSeconds / 86400);
@@ -91,7 +92,7 @@ function addPatientWaitingTime(DateCurrentDateTime, datePatientDateTime) {
   //Convert the numbers into a text string called difference for display
   let difference = '';
   if (days > 0) {
-      difference += (days === 1) ? `${days} day, ` : `${days} days, `;
+    difference += (days === 1) ? `${days} day, ` : `${days} days, `;
   }
 
   difference += (hours === 0 || hours === 1) ? `${hours} hour,    ` : `${hours} hours,    `;

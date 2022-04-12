@@ -79,8 +79,7 @@ function getPatientInfoByUrl(url) {
     } finally {
 
     }
-    console.log("1");
-    console.log(patient_info);
+    //console.log(patient_info);
     // return a single patient if found
     return patient_info;
 }
@@ -180,8 +179,6 @@ function getLastTenTriageFour() {
         lastTenTriageFour = result.all();
     } catch (err) {
         console.log('DB Error - get last 10 patients in category four: ', err.message);
-    } finally {
-
     }
 
     return lastTenTriageFour;
@@ -216,16 +213,19 @@ let insertPatient = async (patient) => {
 
     } catch (err) {
         console.log('DB Error - insertPatient: ', err.message);
+    } finally {
+        setPatientPassword();
+        
     }
 
     return newPatient;
 }
 
 //Cron job  for testing password propagation
-cron.schedule("*/30 * * * * *", function () {
-    setPatientPassword();
-    console.log("COMPLETE");
-});
+// cron.schedule("*/30 * * * * *", function () {
+//     setPatientPassword();
+//     console.log("COMPLETE");
+// });
 
 
 // Export the modules
