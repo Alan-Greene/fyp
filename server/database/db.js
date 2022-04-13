@@ -8,6 +8,6 @@ module.exports = {
 
 class patientDatabase {
     constructor(path) {
-        this.conn = new Database(path, { verbose: console.log });;
+        this.conn = new Database(path, { verbose: console.log });
     }
 }
