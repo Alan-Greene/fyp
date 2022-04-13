@@ -1,0 +1,162 @@
+@media  (min-width: 768px) {
+    div.col-sm-7.five-three {
+    width: 60% !important;
+    }
+    
+    div.col-sm-5.five-two {
+    width: 40% !important;
+    }
+  }
+  
+  .main_header{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #42b3d5;
+    color: #000000;
+    font-size:50px;
+    border-radius: 5px;
+    padding: 10px;
+  }
+  
+  body {
+    background-color: #ffffff;
+  }
+  
+  #main_p_one {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ffffff;
+    background-color: #1a237e;
+    font-size: 25px;
+    border-radius: 100px;
+    padding: 10px;
+  }
+  
+  #main_p_break {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #000000;
+    background-color: #ffffff;
+    font-size: 20px;
+    border-radius: 100px;
+    padding: 1%;
+  }
+  
+  img {
+    width: 100%;
+    height: 420px;
+  }
+  
+  .card {
+    font-size: 25px;
+    background-color: #1a237e;
+    color: #ffffff;
+  }
+  
+  #triage_header {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #42b3d5;
+    color: #000000;
+    font-size: 25px;
+    border-radius: 100px;
+    padding: 10px;
+  }
+  
+  #triage_footer {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #42b3d5;
+    color: #000000;
+    font-size: 25px;
+    border-radius: 5px;
+    padding: 10px;
+  }
+  
+  .btn-primary {
+    margin: 0;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    background-color: #1a237e;
+  }
+  
+  label {
+    color: #000000;
+    font-weight: bold;
+    display: block;
+    float: left;
+    margin-top: 5px;
+    }
+    label:after { content: ": " }
+  
+  .ontime {
+    content: "On time";
+    height: 35px;
+    background: green;
+    text-align: center;
+    font-size: 25px;
+    font-weight: bolder;
+    color: #ffffff;
+  }
+  
+  .delayed {
+    height: 35px;
+    background: orange;
+    text-align: center;
+    font-size: 25px;
+    font-weight: bolder;
+    color: #ffffff;
+  }
+  
+  .verydelayed {
+    height: 35px;
+    background: red;
+    text-align: center;
+    font-size: 25px;
+    font-weight: bolder;
+    color: #ffffff;
+  }
+  
+  #triageOneTriageAverage{
+    font-size: 20px;
+  }
+  
+  #triageTwoTriageAverage{
+    font-size: 20px;
+  }
+  
+  #triageThreeTriageAverage{
+    font-size: 20px;
+  }
+  
+  #triageFourTriageAverage{
+    font-size: 20px;
+  }
+  
+  #triageFiveTriageAverage{
+    font-size: 20px;
+  }
+  
+  #triageOneAverage{
+    font-size: 20px;
+  }
+  
+  #triageTwoAverage{
+    font-size: 20px;
+  }
+  
+  #triageThreeAverage{
+    font-size: 20px;
+  }
+  
+  #triageFourAverage{
+    font-size: 20px;
+  }
+  
+  #triageFiveAverage{
+    font-size: 20px;
+  }
+  
