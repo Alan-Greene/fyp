@@ -9,7 +9,7 @@ const express = require('express');
 const app = express();
 
 // Defile the server host IP and port
-const HOST = '127.0.0.1';
+const HOST = process.env.HOST || '127.0.0.1';
 // if port defined in ENV, use that value, otherwise 3000
 const PORT = process.env.PORT || 3000;
 

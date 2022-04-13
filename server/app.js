@@ -2,10 +2,17 @@
 const express = require('express');
 const cors = require('cors');
 
+const Vonage = require('@vonage/server-sdk')
+
+const vonage = new Vonage({
+  apiKey: "VONAGE_API_KEY",
+  apiSecret: "undefined"
+})
+
 
 // Specify Host and port
-const HOST = '127.0.0.1';
-const PORT = 5000;
+const HOST = process.env.host || '127.0.0.1';
+const PORT = process.env.port || 5000;
 
 // app is a new instance of express (the web app framework)
 let app = express();
@@ -49,6 +56,11 @@ const err = new Error('Not Found: '+ req.method + ":" + req.originalUrl);
 err.status = 404;
 next(err);
 });
+
+app.post('/', (req, res) =>{
+    res.send(req.body);
+    console.log(req.body);
+})
 
 // Start the HTTP server using HOST address and PORT consts defined above
 // Lssten for incoming connections

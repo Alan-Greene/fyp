@@ -50,7 +50,6 @@ function loadIndividualPatientInfo(url) {
 function calculateCurrentWaitingTime(patientData) {
 
   /*
-  
   if(patientData.arrival_date === undefined) {
     console.log("patientData.arrival_date is `undefined`");
   } else {
@@ -63,8 +62,7 @@ function calculateCurrentWaitingTime(patientData) {
   }
   console.log(typeof(patientData.arrival_date));
   */
-
-  console.log(typeof(patientData));
+  //console.log(typeof(patientData));
 
   var stringPatientDateTime = patientData.arrival_date + ' ' + patientData.arrival_time;
   var datePatientDateTime = new Date(stringPatientDateTime)

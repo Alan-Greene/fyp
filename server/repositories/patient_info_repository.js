@@ -125,7 +125,7 @@ function getLastTenTriageOne() {
     let lastTenTriageOne;
 
     try {
-        const result = dbConn.prepare(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_ONE)
+        const result = dbConn.prepare(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_ONE);
         lastTenTriageOne = result.all();
     } catch (err) {
         console.log('DB Error - get last 10 patients in category one: ', err.message);
@@ -141,7 +141,7 @@ function getLastTenTriageTwo() {
     let lastTenTriageTwo;
 
     try {
-        const result = dbConn.prepare(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_TWO)
+        const result = dbConn.prepare(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_TWO);
         lastTenTriageTwo = result.all();
     } catch (err) {
         console.log('DB Error - get last 10 patients in category two: ', err.message);
@@ -158,7 +158,7 @@ function getLastTenTriageThree() {
     let lastTenTriageThree;
 
     try {
-        const result = dbConn.prepare(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_THREE)
+        const result = dbConn.prepare(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_THREE);
         lastTenTriageThree = result.all();
     } catch (err) {
         console.log('DB Error - get last 10 patients in category three: ', err.message);
@@ -175,7 +175,7 @@ function getLastTenTriageFour() {
     let lastTenTriageFour;
 
     try {
-        const result = dbConn.prepare(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_FOUR)
+        const result = dbConn.prepare(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_FOUR);
         lastTenTriageFour = result.all();
     } catch (err) {
         console.log('DB Error - get last 10 patients in category four: ', err.message);
@@ -190,7 +190,7 @@ function getLastTenTriageFive() {
     let lastTenTriageFive;
 
     try {
-        const result = dbConn.prepare(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_FIVE)
+        const result = dbConn.prepare(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_FIVE);
         lastTenTriageFive = result.all();
     } catch (err) {
         console.log('DB Error - get last 10 patients in category five: ', err.message);
@@ -215,10 +215,32 @@ let insertPatient = async (patient) => {
         console.log('DB Error - insertPatient: ', err.message);
     } finally {
         setPatientPassword();
-        
+        send(patient);
     }
 
     return newPatient;
+}
+
+function send (patient) {
+
+    const phone_number = patient.phone_number;
+    const password = patient.password;
+
+    const url_send = "http://localhost:5000/url/individual/" + '' + password;
+
+    fetch('/', {
+        method: 'post',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify({phone_number: phone_number, url_send: url_send})
+    })
+    .then(function(res){
+        console.log(res);
+    })
+    .catch(function(err){
+        console.log(err);
+    });
 }
 
 //Cron job  for testing password propagation
