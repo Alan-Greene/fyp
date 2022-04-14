@@ -26,6 +26,7 @@ const SQL_PATIENT_INFO_BY_URL = 'SELECT _id, triage_score, arrival_date, arrival
 
 const SQL_PATIENT_INSERT = 'INSERT INTO patient_info (birth_year, birth_month, gender, patient_status, arrival_date, arrival_time, triage_date, triage_time, checkout_date, checkout_time, returning_visit, arrival_mode, referral, triage_score, complaint, diagnosis, outcome, destination, phone_number, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
 
+const SQL_PATIENT_SMS = 'SELECT * FROM patient_info ORDER BY _id DESC LIMIT 1';
 
 // Function which uses the SQL_PATIENT_INFO_ALL query to retrieve all patient rows from the database.
 function getPatientInfo() {
@@ -221,7 +222,7 @@ let insertPatient = async (patient) => {
         } catch {
 
         } finally {
-            const latest_patient = dbConn.prepare("SELECT * FROM table ORDER BY column DESC LIMIT 1;")
+            const latest_patient = dbConn.prepare(SQL_PATIENT_SMS);
             //const phone_number = latest_patient.phone_number
             const password = latest_patient.password;
             sms_service.sendSms(password);
