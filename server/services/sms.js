@@ -7,6 +7,8 @@ AWS.config.update({ region: 'us-east-1' });
 function sendSms(url) {
     // Create publish parameters
 
+    console.log(url);
+
     var params = {
         Message: "http://ec2-18-232-152-228.compute-1.amazonaws.com/url/individual/" + '' + url, /* required */
         PhoneNumber: '+353896154318',
