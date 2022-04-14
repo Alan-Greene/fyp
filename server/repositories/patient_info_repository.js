@@ -6,6 +6,8 @@ const { dbConn } = require('../database/db.js');
 
 const patient_password_service = require('../services/password.js')
 
+const sms_service = require('../services/sms');
+
 // Define SQL statements here for use in the functions below
 const SQL_PATIENT_INFO_ALL = 'SELECT _id, triage_score, arrival_date, arrival_time, checkout_date, checkout_time FROM patient_info';
 
@@ -214,7 +216,16 @@ let insertPatient = async (patient) => {
     } catch (err) {
         console.log('DB Error - insertPatient: ', err.message);
     } finally {
-        setPatientPassword();
+        try {
+            setPatientPassword();
+        } catch {
+
+        } finally {
+            const latest_patient = dbConn.prepare("SELECT * FROM table ORDER BY column DESC LIMIT 1;")
+            //const phone_number = latest_patient.phone_number
+            const password = latest_patient.password;
+            sms_service.sendSms(password);
+        }
     }
 
     return newPatient;
