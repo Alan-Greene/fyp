@@ -6,15 +6,12 @@ AWS.config.update({ region: 'us-east-1' });
 //take in number variable here when in production
 function sendSms(url) {
     // Create publish parameters
-    let path = "http://ec2-18-232-152-228.compute-1.amazonaws.com/url/individual/";
     let text_url = JSON.stringify(url);
-    let message = path + '' + text_url[0];
-
-    console.log("MESSAGE: ", message);
-    console.log(typeof(message));
+    text_url = text_url.slice(0, 2);
+    text_url = text_url.slice(0, -2);
 
     var params = {
-        Message: message, /* required */
+        Message: `http://ec2-18-232-152-228.compute-1.amazonaws.com/url/individual/` + '' + text_url, /* required */
         PhoneNumber: '+353896154318',
     };
 
