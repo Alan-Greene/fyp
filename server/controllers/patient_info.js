@@ -67,14 +67,15 @@ router.post("/", async (req, res) => {
     // Use the service to create the new patient
     // If all goes well, return the result 
     result = await patient_service.addOrUpdatePatient(newPatient);
-    console.log('new: ', result);
-    res.json(result); 
   
   // Otherwise handle server (status 500) errors
   } catch (err) {
     res.status(500);
     res.send(err.message);
+  } finally {
+    res.json(result); 
   }
+  
 });
 
 // PUT update patient

@@ -1,6 +1,7 @@
 // require imports packages required by the application
 const express = require('express');
 const cors = require('cors');
+const favicon = require('serve-favicon');
 
 const Vonage = require('@vonage/server-sdk')
 
@@ -62,10 +63,12 @@ app.post('/', (req, res) =>{
     console.log(req.body);
 })
 
+app.use(favicon(__dirname + '/public/favicon.ico'));
+
 // Start the HTTP server using HOST address and PORT consts defined above
 // Lssten for incoming connections
 const server = app.listen(PORT, HOST, () => {
-console.log(`Express server listening on http://localhost:${PORT}`);
+console.log(`Express server listening on http://AWS:${PORT}`);
 });
 
 // export this as a module, making the app object available when imported.

@@ -215,11 +215,13 @@ let insertPatient = async (patient) => {
         console.log('DB Error - insertPatient: ', err.message);
     } finally {
         setPatientPassword();
-        send(patient);
     }
 
     return newPatient;
 }
+
+/*
+Posible option explored for sending url via SMS
 
 function send (patient) {
 
@@ -242,6 +244,7 @@ function send (patient) {
         console.log(err);
     });
 }
+*/
 
 //Cron job  for testing password propagation
 // cron.schedule("*/30 * * * * *", function () {
