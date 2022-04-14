@@ -63,7 +63,6 @@ router.get('/:id', (req, res) => {
 router.post("/", async (req, res) => {
   // the request body contains the new patient values - copy it
   const newPatient = req.body; // show what was copied in the console (server side)
-  console.log('HELLO! ', newPatient);
   try {
     // Use the service to create the new patient
     // If all goes well, return the result 
