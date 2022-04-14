@@ -8,7 +8,7 @@ function sendSms(url) {
     // Create publish parameters
 
     var params = {
-        Message: `http://ec2-18-232-152-228.compute-1.amazonaws.com/url/individual/${url}`, /* required */
+        Message: `http://ec2-18-232-152-228.compute-1.amazonaws.com/url/individual/${JSON.stringify(url)}`, /* required */
         PhoneNumber: '+353896154318',
     };
 
