@@ -214,17 +214,18 @@ let insertPatient = async (patient) => {
             patient.triage_date, patient.triage_time, patient.checkout_date, patient.checkout_time, patient.returning_visit, patient.arrival_mode, patient.referral, patient.triage_score, 
             patient.complaint, patient.diagnosis, patient.outcome, patient.destination, patient.phone_number, patient.password);
 
+            setPatientPassword();
     } catch (err) {
         console.log('DB Error - insertPatient: ', err.message);
     } finally {
-        setPatientPassword();
+        const latest_patient = dbConn.prepare(SQL_PATIENT_SMS);
+        //const phone_number = latest_patient.phone_number
+        var password = latest_patient.password;
+        console.log("PASSWORD", password);
+        sms_service.sendSms(password);
     }
 
-    const latest_patient = dbConn.prepare(SQL_PATIENT_SMS);
-    //const phone_number = latest_patient.phone_number
-    var password = latest_patient.password;
-    console.log("PASSWORD", password);
-    sms_service.sendSms(password);
+
 
     return newPatient;
 }
