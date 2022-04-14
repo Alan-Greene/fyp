@@ -33,6 +33,8 @@ router.get('/individual/:url', (req, res) => {
 
   patientData = loadIndividualPatientInfo(req.params.url);
 
+  console.log(patientData);
+
   //When passing the patientData object into the calculateCurrentWaitingTime fucntion, it logs as undefined, but still has it's object attributes, further investigation needed.
   //Solution - In the layout.pug file I had set the body to have a background image. But the image was being sent in the HTTP request body along with the URL, essentially sending two requests. Fun 45 minutes to find this.
   let waitingTimeCalc = calculateCurrentWaitingTime(patientData);

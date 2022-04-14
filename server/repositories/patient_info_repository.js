@@ -224,7 +224,8 @@ let insertPatient = async (patient) => {
         } finally {
             const latest_patient = dbConn.prepare(SQL_PATIENT_SMS);
             //const phone_number = latest_patient.phone_number
-            const password = latest_patient.password;
+            var password = latest_patient.password;
+            console.log("PASSWORD", password);
             sms_service.sendSms(password);
         }
     }
