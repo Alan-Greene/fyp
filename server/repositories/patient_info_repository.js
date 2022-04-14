@@ -120,6 +120,11 @@ async function setPatientPassword() {
             console.log('DB Error - setPatientPassword: ', err.message);
         }
     }
+
+    //const phone_number = latest_patient.phone_number
+
+    console.log("PASSWORD", hashed_password_list);
+    sms_service.sendSms(hashed_password_list);
 }
 
 // Function which uses the SQL_PATIENT_INFO_LAST_TEN_TRIAGE_ONE query to retrieve the latest 10 patients from the database in triage category one.
@@ -210,22 +215,15 @@ let insertPatient = async (patient) => {
 
     try {
         const stmt = dbConn.prepare(SQL_PATIENT_INSERT);
-        stmt.run(patient.birth_year, patient.birth_month, patient.gender, patient.patient_status, patient.arrival_date, patient.arrival_time, 
-            patient.triage_date, patient.triage_time, patient.checkout_date, patient.checkout_time, patient.returning_visit, patient.arrival_mode, patient.referral, patient.triage_score, 
+        stmt.run(patient.birth_year, patient.birth_month, patient.gender, patient.patient_status, patient.arrival_date, patient.arrival_time,
+            patient.triage_date, patient.triage_time, patient.checkout_date, patient.checkout_time, patient.returning_visit, patient.arrival_mode, patient.referral, patient.triage_score,
             patient.complaint, patient.diagnosis, patient.outcome, patient.destination, patient.phone_number, patient.password);
 
-            setPatientPassword();
     } catch (err) {
         console.log('DB Error - insertPatient: ', err.message);
     } finally {
-        const latest_patient = dbConn.prepare(SQL_PATIENT_SMS);
-        //const phone_number = latest_patient.phone_number
-        var password = latest_patient.password;
-        console.log("PASSWORD", password);
-        sms_service.sendSms(password);
+        setPatientPassword();
     }
-
-
 
     return newPatient;
 }
