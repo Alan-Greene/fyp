@@ -9,7 +9,7 @@ const express = require('express');
 const app = express();
 
 // Defile the server host IP and port
-const HOST = 'ec2-3-88-113-84.compute-1.amazonaws.com';
+const HOST = 'ec2-54-226-58-89.compute-1.amazonaws.com';
 // if port defined in ENV, use that value, otherwise 3000
 const PORT = 3000;
 
