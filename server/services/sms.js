@@ -8,7 +8,7 @@ function sendSms(url) {
     // Create publish parameters
     let path = "http://ec2-18-232-152-228.compute-1.amazonaws.com/url/individual/";
     let text_url = JSON.stringify(url);
-    let message = path + '' + text_url
+    let message = path + '' + text_url[0];
 
     console.log("MESSAGE: ", message);
     console.log(typeof(message));
