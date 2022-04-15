@@ -5,24 +5,24 @@
 //import * as api from './fetchAPIHelper.js';
 
 // Call this function when page is loaded
-function displayPatients(patients) {
+// function displayPatients(patients) {
 
-  const rows = patients.map((patient) => {
-    let row = `<tr>
-                  <td>${patient.triage_score}</td>
-                  <td>${patient.arrival_date}</td>
-                  <td>${patient.arrival_time}</td>
-                  <td>${patient.checkout_date}</td>
-                  <td>${patient.checkout_time}</td>
-                  <td>${patient.calculated_times}</td>
-                </tr>`;
-    return row;
-  });
+//   const rows = patients.map((patient) => {
+//     let row = `<tr>
+//                   <td>${patient.triage_score}</td>
+//                   <td>${patient.arrival_date}</td>
+//                   <td>${patient.arrival_time}</td>
+//                   <td>${patient.checkout_date}</td>
+//                   <td>${patient.checkout_time}</td>
+//                   <td>${patient.calculated_times}</td>
+//                 </tr>`;
+//     return row;
+//   });
 
-  document.getElementById("patientrows").innerHTML = rows.join("");
-}
+//   document.getElementById("patientrows").innerHTML = rows.join("");
+// }
 
-function loadIndividualPatientInfo(url) {
+// function loadIndividualPatientInfo(url) {
 
 //   console.log("1", window.location.href);
 //   const patients = await api.getDataAsync(`${api.INDIVIDUAL_URL}`);
@@ -31,7 +31,7 @@ function loadIndividualPatientInfo(url) {
 //   //addTimeToPatientObject(patients);
 //   displayPatients(patients);
 
-}
+//}
 
 
 // function addTimeToPatientObject() {
@@ -42,14 +42,14 @@ function loadIndividualPatientInfo(url) {
 
 // }
 
-export {
-  displayPatients,
-  loadIndividualPatientInfo,
-  // addTimeToPatientObject,
-  // addTimeToPatientObjectCalc,
-}
+// export {
+//   displayPatients,
+//   loadIndividualPatientInfo,
+//   // addTimeToPatientObject,
+//   // addTimeToPatientObjectCalc,
+// }
 
-// load the script
-console.log("before");
-loadIndividualPatientInfo();
-console.log("after");
+// // load the script
+// console.log("before");
+// loadIndividualPatientInfo();
+// console.log("after");

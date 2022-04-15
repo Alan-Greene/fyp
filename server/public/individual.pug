@@ -2,33 +2,49 @@ extends layout.pug
 
 block content
   .row
-    .col-sm-3
-    .col-sm-3
-      p#content Your triage score:
-    .col-sm-3
+    .col-sm-4
+    .col-sm-4
+      p#content Your triage score
+    .col-sm-4
+  
+  .row
+    .col-sm-4
+    .col-sm-4
       h1= patientData.triage_score
-    .col-sm-3
+    .col-sm-4
 
   .row
-    .col-sm-3
-    .col-sm-3
-      p#content Registration date:
-    .col-sm-3
+    .col-sm-4
+    .col-sm-4
+      p#content Registration date
+    .col-sm-4
+  
+  .row
+    .col-sm-4
+    .col-sm-4
       h1= patientData.arrival_date
-    .col-sm-3
+    .col-sm-4
 
   .row
-    .col-sm-3
-    .col-sm-3
-      p#content Registration time:
-    .col-sm-3
+    .col-sm-4
+    .col-sm-4
+      p#content Registration time
+    .col-sm-4
+
+  .row
+    .col-sm-4
+    .col-sm-4
       h1= patientData.arrival_time
-    .col-sm-3
+    .col-sm-4
 
   .row
-    .col-sm-3
-    .col-sm-3
-      p#content Time since registration:
-    .col-sm-3
+    .col-sm-4
+    .col-sm-4
+      p#content Time since registration
+    .col-sm-4
+  
+  .row
+    .col-sm-4 
+    .col-sm-4
       h1= waitingTimeCalc
-    .col-sm-3
+    .col-sm-4
