@@ -122,8 +122,6 @@ async function setPatientPassword() {
     }
 
     //const phone_number = latest_patient.phone_number
-
-    console.log("PASSWORD", typeof(hashed_password_list[0]));
     sms_service.sendSms(hashed_password_list[0]);
 }
 
