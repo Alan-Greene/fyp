@@ -12,7 +12,7 @@ const vonage = new Vonage({
 
 
 // Specify Host and port
-const HOST = 'ec2-18-232-152-228.compute-1.amazonaws.com';
+const HOST = '54.159.244.208';
 const PORT = 80;
 
 // app is a new instance of express (the web app framework)
@@ -68,7 +68,7 @@ app.use(favicon(__dirname + '/public/favicon.ico'));
 // Start the HTTP server using HOST address and PORT consts defined above
 // Lssten for incoming connections
 const server = app.listen(PORT, HOST, () => {
-console.log(`Express server listening on http://AWS:${PORT}`);
+console.log(`Express server listening on http://${HOST}:${PORT}`);
 });
 
 // export this as a module, making the app object available when imported.
