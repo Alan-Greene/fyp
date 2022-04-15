@@ -1,7 +1,7 @@
 // Load the AWS SDK for Node.js
 var AWS = require('aws-sdk');
 // Set region
-AWS.config.update({ region: 'REGION' });
+AWS.config.update({ region: 'us-east-1a' });
 
 //take in number variable here when in production
 function sendSms(url) {
@@ -23,7 +23,7 @@ function sendSms(url) {
                 console.error(err, err.stack);
             });
 
-    console.log(Message);
+    console.log(params.Message);
 }
 
 module.exports = {
