@@ -7,9 +7,12 @@ AWS.config.update({ region: 'us-east-1' });
 function sendSms(url) {
     // Create publish parameters
     var params = {
-        Message: 'ec2-54-159-244-208.compute-1.amazonaws.com/url/individual/' + '' + url, /* required */
+        Message: '54.159.244.208/url/individual/' + '' + url, /* required */
         PhoneNumber: '+353896154318',
     };
+
+    console.log("Message URL: ", params.Message);
+    console.log("Message Phone number: ", params.PhoneNumber);
 
     // Create promise and SNS service object
     var publishTextPromise = new AWS.SNS({ apiVersion: '2010-03-31' }).publish(params).promise();
