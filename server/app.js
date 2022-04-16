@@ -1,10 +1,19 @@
 // require imports packages required by the application
 const express = require('express');
 const cors = require('cors');
+const favicon = require('serve-favicon');
+
+const Vonage = require('@vonage/server-sdk')
+
+const vonage = new Vonage({
+  apiKey: "VONAGE_API_KEY",
+  apiSecret: "undefined"
+})
+
 
 // Specify Host and port
-const HOST = '54.159.244.208';
-const PORT = 5000;
+const HOST = 'ec2-54-159-244-208.compute-1.amazonaws.com';
+const PORT = 80;
 
 // app is a new instance of express (the web app framework)
 let app = express();
