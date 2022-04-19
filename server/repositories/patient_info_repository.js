@@ -29,12 +29,12 @@ const SQL_PATIENT_INSERT = 'INSERT INTO patient_info (birth_year, birth_month, g
 const SQL_PATIENT_SMS = 'SELECT phone_number, password FROM patient_info ORDER BY _id DESC LIMIT 1';
 
 // Function which uses the SQL_PATIENT_INFO_ALL query to retrieve all patient rows from the database.
-/*
+
 function getPatientInfo() {
     let patient_info;
 
     try {
-        const result = dbConn.query(SQL_PATIENT_INFO_ALL);
+        const result = dbConn.prepare(SQL_PATIENT_INFO_ALL);
         console.log("getPatientInfo() RESULT", result);
         patient_info = result;
     } catch (err) {
@@ -47,10 +47,10 @@ function getPatientInfo() {
 
     return patient_info;
 }
-*/
 
+/*
 function getPatientInfo() {
-    dbConn.query(SQL_PATIENT_INFO_ALL, function (err, result, fields){
+    dbConn.prepare(SQL_PATIENT_INFO_ALL, function (err, result, fields){
         if (err) throw err;
         console.log(result);
         const data = JSON.parse(JSON.stringify(result));
@@ -59,6 +59,7 @@ function getPatientInfo() {
         return result;
     });
 }
+*/
 
 // Function which uses the SQL_PATIENT_INFO_BYID query to retrieve a patient row from the database based upon _id parameter passed from the URL.
 
@@ -67,7 +68,7 @@ function getPatientInfoById(id) {
 
     try {
         // Execute the SQL
-        const result = dbConn.query(SQL_PATIENT_INFO_BYID)
+        const result = dbConn.prepare(SQL_PATIENT_INFO_BYID)
 
         // set id parameter value
         patient_info = result.get(id);
@@ -87,7 +88,7 @@ function getPatientInfoByUrl(url) {
 
     try {
         // Execute the SQL
-        const result = dbConn.query(SQL_PATIENT_INFO_BY_URL)
+        const result = dbConn.prepare(SQL_PATIENT_INFO_BY_URL)
 
         // set url parameter value
         patient_info = result.get(url);
@@ -107,7 +108,7 @@ function getPatientInfoGeneratePassword() {
     let patient_info;
 
     try {
-        const result = dbConn.query(SQL_PATIENT_GENERATE_PASSWORD)
+        const result = dbConn.prepare(SQL_PATIENT_GENERATE_PASSWORD)
         console.log("getPatientInfoGeneratePassword() PATIENT INFO", result);
         patient_info = result;
     } catch (err) {
@@ -130,7 +131,7 @@ async function setPatientPassword() {
 
     for (let i = 0; i < id_list.length; i++) {
 
-            const stmt = dbConn.query(SQL_PATIENT_SET_PASSWORD, function (err, result) {
+            const stmt = dbConn.prepare(SQL_PATIENT_SET_PASSWORD, function (err, result) {
             if (err) console.log('DB Error - setPatientPassword: ', err.message);
             stmt.execute(hashed_password_list[i], id_list[i]);
             console.log(result.affectedRows + " record(s) updated");
@@ -146,7 +147,7 @@ async function setPatientPassword() {
 
     */
 
-    //sms_service.sendSms(hashed_password_list[0]);
+    sms_service.sendSms(hashed_password_list[0]);
 }
 
 // Function which uses the SQL_PATIENT_INFO_LAST_TEN_TRIAGE_ONE query to retrieve the latest 10 patients from the database in triage category one.
@@ -155,7 +156,7 @@ function getLastTenTriageOne() {
     let lastTenTriageOne;
 
     try {
-        const result = dbConn.query(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_ONE);
+        const result = dbConn.prepare(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_ONE);
         lastTenTriageOne = result;
     } catch (err) {
         console.log('DB Error - get last 10 patients in category one: ', err.message);
@@ -171,7 +172,7 @@ function getLastTenTriageTwo() {
     let lastTenTriageTwo;
 
     try {
-        const result = dbConn.query(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_TWO);
+        const result = dbConn.prepare(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_TWO);
         lastTenTriageTwo = result;
     } catch (err) {
         console.log('DB Error - get last 10 patients in category two: ', err.message);
@@ -188,7 +189,7 @@ function getLastTenTriageThree() {
     let lastTenTriageThree;
 
     try {
-        const result = dbConn.query(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_THREE);
+        const result = dbConn.prepare(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_THREE);
         lastTenTriageThree = result;
     } catch (err) {
         console.log('DB Error - get last 10 patients in category three: ', err.message);
@@ -205,7 +206,7 @@ function getLastTenTriageFour() {
     let lastTenTriageFour;
 
     try {
-        const result = dbConn.query(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_FOUR);
+        const result = dbConn.prepare(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_FOUR);
         lastTenTriageFour = result;
     } catch (err) {
         console.log('DB Error - get last 10 patients in category four: ', err.message);
@@ -220,7 +221,7 @@ function getLastTenTriageFive() {
     let lastTenTriageFive;
 
     try {
-        const result = dbConn.query(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_FIVE);
+        const result = dbConn.prepare(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_FIVE);
         lastTenTriageFive = result;
     } catch (err) {
         console.log('DB Error - get last 10 patients in category five: ', err.message);
@@ -236,7 +237,7 @@ let insertPatient = async (patient) => {
     let newPatient;
 
     try {
-        const stmt = dbConn.query(SQL_PATIENT_INSERT);
+        const stmt = dbConn.prepare(SQL_PATIENT_INSERT);
         stmt.run(patient.birth_year, patient.birth_month, patient.gender, patient.patient_status, patient.arrival_date, patient.arrival_time,
             patient.triage_date, patient.triage_time, patient.checkout_date, patient.checkout_time, patient.returning_visit, patient.arrival_mode, patient.referral, patient.triage_score,
             patient.complaint, patient.diagnosis, patient.outcome, patient.destination, patient.phone_number, patient.password);
