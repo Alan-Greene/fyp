@@ -16,9 +16,9 @@ app.set('view engine', 'pug');
 // Application settings
 app.use((req, res, next) => {
 
-// Globally set Content-Type header for the application
-res.setHeader("Content-Type", "application/json");
-next();
+    // Globally set Content-Type header for the application
+    res.setHeader("Content-Type", "application/json");
+    next();
 });
 
 //Allow app to support differnt body content types
@@ -28,7 +28,7 @@ app.use(express.text());
 app.use(express.json());
 
 // support url encoded bodies
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 
 // cors
 // https://www.npmjs.com/package/cors
@@ -45,12 +45,12 @@ app.use('/patient_info', require('./controllers/patient_info'));
 app.use('/patient_info/triage', require('./controllers/patient_info'));
 
 app.use((req, res, next) => {
-const err = new Error('Not Found: '+ req.method + ":" + req.originalUrl);
-err.status = 404;
-next(err);
+    const err = new Error('Not Found: ' + req.method + ":" + req.originalUrl);
+    err.status = 404;
+    next(err);
 });
 
-app.post('/', (req, res) =>{
+app.post('/', (req, res) => {
     res.send(req.body);
     console.log(req.body);
 })
@@ -60,7 +60,7 @@ app.use(favicon(__dirname + '/public/favicon.ico'));
 // Start the HTTP server using HOST address and PORT consts defined above
 // Lssten for incoming connections
 const server = app.listen(PORT, HOST, () => {
-console.log(`Express server listening on http://${HOST}:${PORT}`);
+    console.log(`Express server listening on http://${HOST}:${PORT}`);
 });
 
 // export this as a module, making the app object available when imported.
