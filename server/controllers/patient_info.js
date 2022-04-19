@@ -85,7 +85,7 @@ router.put('/:id', async (req, res) => {
   res.json(`This will update patient with id = ${patientId}`);
 });
 
-// DELETE single task.
+// DELETE a patient.
 router.delete('/:id', async (req, res) => {
   const patientId = req.params.id;
   res.json(`This will delete patient with id = ${patientId}`);
