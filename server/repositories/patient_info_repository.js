@@ -29,6 +29,7 @@ const SQL_PATIENT_INSERT = 'INSERT INTO patient_info (birth_year, birth_month, g
 const SQL_PATIENT_SMS = 'SELECT phone_number, password FROM patient_info ORDER BY _id DESC LIMIT 1';
 
 // Function which uses the SQL_PATIENT_INFO_ALL query to retrieve all patient rows from the database.
+/*
 function getPatientInfo() {
     let patient_info;
 
@@ -45,6 +46,16 @@ function getPatientInfo() {
     console.log("getPatientInfo() PATIENT INFO", patient_info);
 
     return patient_info;
+}
+*/
+
+function getPatientInfo() {
+    if (err) throw err;
+    dbConn.query(SQL_PATIENT_INFO_ALL, function (err, result, fields){
+        if (err) throw err;
+        console.log(result);
+        return result;
+    });
 }
 
 // Function which uses the SQL_PATIENT_INFO_BYID query to retrieve a patient row from the database based upon _id parameter passed from the URL.
