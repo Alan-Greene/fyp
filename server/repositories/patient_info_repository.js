@@ -33,7 +33,7 @@ function getPatientInfo() {
     let patient_info;
 
     try {
-        const result = dbConnprepare(SQL_PATIENT_INFO_ALL);
+        const result = dbConn.prepare(SQL_PATIENT_INFO_ALL);
         patient_info = result.all();
     } catch (err) {
         console.log('DB Error - get all patient_info: ', err.message);
@@ -51,7 +51,7 @@ function getPatientInfoById(id) {
 
     try {
         // Execute the SQL
-        const result = dbConnprepare(SQL_PATIENT_INFO_BYID)
+        const result = dbConn.prepare(SQL_PATIENT_INFO_BYID)
 
         // set id parameter value
         patient_info = result.get(id);
@@ -71,7 +71,7 @@ function getPatientInfoByUrl(url) {
 
     try {
         // Execute the SQL
-        const result = dbConnprepare(SQL_PATIENT_INFO_BY_URL)
+        const result = dbConn.prepare(SQL_PATIENT_INFO_BY_URL)
 
         // set id parameter value
         patient_info = result.get(url);
@@ -91,7 +91,7 @@ function getPatientInfoGeneratePassword() {
     let patient_info;
 
     try {
-        const result = dbConnprepare(SQL_PATIENT_GENERATE_PASSWORD)
+        const result = dbConn.prepare(SQL_PATIENT_GENERATE_PASSWORD)
         patient_info = result.all();
     } catch (err) {
         console.log('DB Error - get all patient_info: ', err.message);
@@ -114,7 +114,7 @@ async function setPatientPassword() {
     for (let i = 0; i < id_list.length; i++) {
 
         try {
-            const stmt = dbConnprepare(SQL_PATIENT_SET_PASSWORD);
+            const stmt = dbConn.prepare(SQL_PATIENT_SET_PASSWORD);
             stmt.run(hashed_password_list[i], id_list[i]);
         } catch (err) {
             console.log('DB Error - setPatientPassword: ', err.message);
@@ -131,7 +131,7 @@ function getLastTenTriageOne() {
     let lastTenTriageOne;
 
     try {
-        const result = dbConnprepare(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_ONE);
+        const result = dbConn.prepare(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_ONE);
         lastTenTriageOne = result.all();
     } catch (err) {
         console.log('DB Error - get last 10 patients in category one: ', err.message);
@@ -147,7 +147,7 @@ function getLastTenTriageTwo() {
     let lastTenTriageTwo;
 
     try {
-        const result = dbConnprepare(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_TWO);
+        const result = dbConn.prepare(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_TWO);
         lastTenTriageTwo = result.all();
     } catch (err) {
         console.log('DB Error - get last 10 patients in category two: ', err.message);
@@ -164,7 +164,7 @@ function getLastTenTriageThree() {
     let lastTenTriageThree;
 
     try {
-        const result = dbConnprepare(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_THREE);
+        const result = dbConn.prepare(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_THREE);
         lastTenTriageThree = result.all();
     } catch (err) {
         console.log('DB Error - get last 10 patients in category three: ', err.message);
@@ -181,7 +181,7 @@ function getLastTenTriageFour() {
     let lastTenTriageFour;
 
     try {
-        const result = dbConnprepare(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_FOUR);
+        const result = dbConn.prepare(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_FOUR);
         lastTenTriageFour = result.all();
     } catch (err) {
         console.log('DB Error - get last 10 patients in category four: ', err.message);
@@ -196,7 +196,7 @@ function getLastTenTriageFive() {
     let lastTenTriageFive;
 
     try {
-        const result = dbConnprepare(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_FIVE);
+        const result = dbConn.prepare(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_FIVE);
         lastTenTriageFive = result.all();
     } catch (err) {
         console.log('DB Error - get last 10 patients in category five: ', err.message);
@@ -212,7 +212,7 @@ let insertPatient = async (patient) => {
     let newPatient;
 
     try {
-        const stmt = dbConnprepare(SQL_PATIENT_INSERT);
+        const stmt = dbConn.prepare(SQL_PATIENT_INSERT);
         stmt.run(patient.birth_year, patient.birth_month, patient.gender, patient.patient_status, patient.arrival_date, patient.arrival_time,
             patient.triage_date, patient.triage_time, patient.checkout_date, patient.checkout_time, patient.returning_visit, patient.arrival_mode, patient.referral, patient.triage_score,
             patient.complaint, patient.diagnosis, patient.outcome, patient.destination, patient.phone_number, patient.password);
