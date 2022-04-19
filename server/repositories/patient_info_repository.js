@@ -263,11 +263,13 @@ function send (patient) {
 }
 */
 
+
 //Cron job  for testing password propagation
-cron.schedule("*/30 * * * * *", function () {
-    setPatientPassword();
-    console.log("COMPLETE");
-});
+//cron.schedule("*/30 * * * * *", function () {
+    //setPatientPassword();
+    //console.log("COMPLETE");
+//});
+
 
 
 // Export the modules
