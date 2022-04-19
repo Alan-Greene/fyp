@@ -50,7 +50,6 @@ function getPatientInfo() {
 */
 
 function getPatientInfo() {
-    if (err) throw err;
     dbConn.query(SQL_PATIENT_INFO_ALL, function (err, result, fields){
         if (err) throw err;
         console.log(result);
