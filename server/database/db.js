@@ -1,3 +1,4 @@
+
 const Database = require('better-sqlite3');
 const dbConn = new Database('./database/patientdb.db', { verbose: console.log });
 
