@@ -4,8 +4,6 @@
 //import req from 'express/lib/request';
 import * as api from './fetchAPIHelper.js';
 
-alert("Hello");
-
 // Call this function when page is loaded
 function displayPatients(patients) {
 
