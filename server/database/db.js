@@ -17,11 +17,11 @@ class patientDatabase {
 const mysql = require ("mysql");
 
 const dbConn = mysql.createConnection({
-    host: "tuh-database.cla1p3zacxfo.us-east-1.rds.amazonaws.com",
+    host: "tuh-display-database.ckjma0gif9pq.us-east-1.rds.amazonaws.com",
     port: "3306",
     user: "admin",
     password: "TheKingAnd1",
-    database: "TUH_Database",
+    database: "TUH_Display_Database",
 });
 
 dbConn.connect((err) =>{
