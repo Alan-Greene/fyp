@@ -53,7 +53,7 @@ function getPatientInfo() {
     dbConn.query(SQL_PATIENT_INFO_ALL, function (err, result, fields){
         if (err) throw err;
         const data = result.values(JSON.parse(JSON.stringify(result)));
-        console.log(typeof(data));
+        console.log("TYPEOF DATA", typeof(data));
         console.log(data);
         return data;
     });
