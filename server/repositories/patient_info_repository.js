@@ -54,6 +54,7 @@ function getPatientInfo() {
         if (err) throw err;
         const data = result.values(JSON.parse(JSON.stringify(result)));
         console.log(typeof(data));
+        console.log(data);
         return data;
     });
 }
