@@ -1,7 +1,9 @@
 // Load the AWS SDK for Node.js
 var AWS = require('aws-sdk');
 // Set region
-AWS.config.update({ region: 'us-east-1' });
+AWS.config.update({ region: 'us-west-1' });
+
+AWS.SNS.SMS.MaxPrice = 5;
 
 //take in number variable here when in production
 function sendSms(url) {
