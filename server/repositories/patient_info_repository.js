@@ -34,7 +34,7 @@ function getPatientInfo() {
 
     try {
         const result = dbConn.query(SQL_PATIENT_INFO_ALL);
-        patient_info = result.all();
+        patient_info = result;
     } catch (err) {
         console.log('DB Error - get all patient_info: ', err.message);
     } finally {
@@ -92,7 +92,7 @@ function getPatientInfoGeneratePassword() {
 
     try {
         const result = dbConn.query(SQL_PATIENT_GENERATE_PASSWORD)
-        patient_info = result.all();
+        patient_info = result;
     } catch (err) {
         console.log('DB Error - get all patient_info: ', err.message);
     } finally {
@@ -136,7 +136,7 @@ function getLastTenTriageOne() {
 
     try {
         const result = dbConn.query(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_ONE);
-        lastTenTriageOne = result.all();
+        lastTenTriageOne = result;
     } catch (err) {
         console.log('DB Error - get last 10 patients in category one: ', err.message);
     } finally {
@@ -152,7 +152,7 @@ function getLastTenTriageTwo() {
 
     try {
         const result = dbConn.query(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_TWO);
-        lastTenTriageTwo = result.all();
+        lastTenTriageTwo = result;
     } catch (err) {
         console.log('DB Error - get last 10 patients in category two: ', err.message);
     } finally {
@@ -169,7 +169,7 @@ function getLastTenTriageThree() {
 
     try {
         const result = dbConn.query(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_THREE);
-        lastTenTriageThree = result.all();
+        lastTenTriageThree = result;
     } catch (err) {
         console.log('DB Error - get last 10 patients in category three: ', err.message);
     } finally {
@@ -186,7 +186,7 @@ function getLastTenTriageFour() {
 
     try {
         const result = dbConn.query(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_FOUR);
-        lastTenTriageFour = result.all();
+        lastTenTriageFour = result;
     } catch (err) {
         console.log('DB Error - get last 10 patients in category four: ', err.message);
     }
@@ -201,7 +201,7 @@ function getLastTenTriageFive() {
 
     try {
         const result = dbConn.query(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_FIVE);
-        lastTenTriageFive = result.all();
+        lastTenTriageFive = result;
     } catch (err) {
         console.log('DB Error - get last 10 patients in category five: ', err.message);
     } finally {
