@@ -114,13 +114,14 @@ async function setPatientPassword() {
     for (let i = 0; i < id_list.length; i++) {
 
         try {
-            dbConn.query(SQL_PATIENT_SET_PASSWORD, (err, result)) {
+            dbConn.query(SQL_PATIENT_SET_PASSWORD, function (err, result) {
+                if (err) console.log('DB Error - setPatientPassword: ', err.message);
                 console.log(result.affectedRows + " record(s) updated");
                 stmt.run(hashed_password_list[i], id_list[i]);
-            }
+            });
 
         } catch (err) {
-            console.log('DB Error - setPatientPassword: ', err.message);
+            
         }
     }
 
