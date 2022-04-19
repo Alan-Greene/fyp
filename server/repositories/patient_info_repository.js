@@ -52,6 +52,7 @@ function getPatientInfo() {
 function getPatientInfo() {
     dbConn.query(SQL_PATIENT_INFO_ALL, function (err, result, fields){
         if (err) throw err;
+        console.log(typrof(result));
         console.log(result);
         return result;
     });
