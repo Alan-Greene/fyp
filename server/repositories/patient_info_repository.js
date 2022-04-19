@@ -29,34 +29,19 @@ const SQL_PATIENT_INSERT = 'INSERT INTO patient_info (birth_year, birth_month, g
 const SQL_PATIENT_SMS = 'SELECT phone_number, password FROM patient_info ORDER BY _id DESC LIMIT 1';
 
 // Function which uses the SQL_PATIENT_INFO_ALL query to retrieve all patient rows from the database.
-/*
 function getPatientInfo() {
     let patient_info;
 
     try {
-        const result = dbConn.query(SQL_PATIENT_INFO_ALL);
-        console.log("getPatientInfo() RESULT", result);
-        patient_info = result;
+        const result = dbConnprepare(SQL_PATIENT_INFO_ALL);
+        patient_info = result.all();
     } catch (err) {
         console.log('DB Error - get all patient_info: ', err.message);
     } finally {
 
     }
 
-    console.log("getPatientInfo() PATIENT INFO", patient_info);
-
     return patient_info;
-}
-*/
-
-function getPatientInfo() {
-    dbConn.query(SQL_PATIENT_INFO_ALL, function (err, result, fields){
-        if (err) throw err;
-        //const data = result.values(JSON.parse(JSON.stringify(result)));
-        //console.log("TYPEOF DATA", typeof(data));
-        //console.log(data);
-        return result;
-    });
 }
 
 // Function which uses the SQL_PATIENT_INFO_BYID query to retrieve a patient row from the database based upon _id parameter passed from the URL.
@@ -66,7 +51,7 @@ function getPatientInfoById(id) {
 
     try {
         // Execute the SQL
-        const result = dbConn.query(SQL_PATIENT_INFO_BYID)
+        const result = dbConnprepare(SQL_PATIENT_INFO_BYID)
 
         // set id parameter value
         patient_info = result.get(id);
@@ -86,9 +71,9 @@ function getPatientInfoByUrl(url) {
 
     try {
         // Execute the SQL
-        const result = dbConn.query(SQL_PATIENT_INFO_BY_URL)
+        const result = dbConnprepare(SQL_PATIENT_INFO_BY_URL)
 
-        // set url parameter value
+        // set id parameter value
         patient_info = result.get(url);
 
         // Catch and log errors to server side console 
@@ -106,15 +91,14 @@ function getPatientInfoGeneratePassword() {
     let patient_info;
 
     try {
-        const result = dbConn.query(SQL_PATIENT_GENERATE_PASSWORD)
-        console.log("getPatientInfoGeneratePassword() PATIENT INFO", result);
-        patient_info = result;
+        const result = dbConnprepare(SQL_PATIENT_GENERATE_PASSWORD)
+        patient_info = result.all();
     } catch (err) {
         console.log('DB Error - get all patient_info: ', err.message);
     } finally {
 
     }
-    console.log("getPatientInfoGeneratePassword() PATIENT INFO", patient_info);
+
     return patient_info;
 
 }
@@ -129,22 +113,15 @@ async function setPatientPassword() {
 
     for (let i = 0; i < id_list.length; i++) {
 
-            const stmt = dbConn.query(SQL_PATIENT_SET_PASSWORD, function (err, result) {
-            if (err) console.log('DB Error - setPatientPassword: ', err.message);
-            stmt.execute(hashed_password_list[i], id_list[i]);
-            console.log(result.affectedRows + " record(s) updated");
-            });
-
+        try {
+            const stmt = dbConnprepare(SQL_PATIENT_SET_PASSWORD);
+            stmt.run(hashed_password_list[i], id_list[i]);
+        } catch (err) {
+            console.log('DB Error - setPatientPassword: ', err.message);
         }
+    }
+
     //const phone_number = latest_patient.phone_number
-
-
-    /*
-
-        SEND SMS HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-    */
-
     //sms_service.sendSms(hashed_password_list[0]);
 }
 
@@ -154,8 +131,8 @@ function getLastTenTriageOne() {
     let lastTenTriageOne;
 
     try {
-        const result = dbConn.query(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_ONE);
-        lastTenTriageOne = result;
+        const result = dbConnprepare(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_ONE);
+        lastTenTriageOne = result.all();
     } catch (err) {
         console.log('DB Error - get last 10 patients in category one: ', err.message);
     } finally {
@@ -170,8 +147,8 @@ function getLastTenTriageTwo() {
     let lastTenTriageTwo;
 
     try {
-        const result = dbConn.query(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_TWO);
-        lastTenTriageTwo = result;
+        const result = dbConnprepare(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_TWO);
+        lastTenTriageTwo = result.all();
     } catch (err) {
         console.log('DB Error - get last 10 patients in category two: ', err.message);
     } finally {
@@ -187,8 +164,8 @@ function getLastTenTriageThree() {
     let lastTenTriageThree;
 
     try {
-        const result = dbConn.query(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_THREE);
-        lastTenTriageThree = result;
+        const result = dbConnprepare(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_THREE);
+        lastTenTriageThree = result.all();
     } catch (err) {
         console.log('DB Error - get last 10 patients in category three: ', err.message);
     } finally {
@@ -204,8 +181,8 @@ function getLastTenTriageFour() {
     let lastTenTriageFour;
 
     try {
-        const result = dbConn.query(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_FOUR);
-        lastTenTriageFour = result;
+        const result = dbConnprepare(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_FOUR);
+        lastTenTriageFour = result.all();
     } catch (err) {
         console.log('DB Error - get last 10 patients in category four: ', err.message);
     }
@@ -219,8 +196,8 @@ function getLastTenTriageFive() {
     let lastTenTriageFive;
 
     try {
-        const result = dbConn.query(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_FIVE);
-        lastTenTriageFive = result;
+        const result = dbConnprepare(SQL_PATIENT_INFO_LAST_TEN_TRIAGE_FIVE);
+        lastTenTriageFive = result.all();
     } catch (err) {
         console.log('DB Error - get last 10 patients in category five: ', err.message);
     } finally {
@@ -235,7 +212,7 @@ let insertPatient = async (patient) => {
     let newPatient;
 
     try {
-        const stmt = dbConn.query(SQL_PATIENT_INSERT);
+        const stmt = dbConnprepare(SQL_PATIENT_INSERT);
         stmt.run(patient.birth_year, patient.birth_month, patient.gender, patient.patient_status, patient.arrival_date, patient.arrival_time,
             patient.triage_date, patient.triage_time, patient.checkout_date, patient.checkout_time, patient.returning_visit, patient.arrival_mode, patient.referral, patient.triage_score,
             patient.complaint, patient.diagnosis, patient.outcome, patient.destination, patient.phone_number, patient.password);
@@ -275,13 +252,11 @@ function send (patient) {
 }
 */
 
-
 //Cron job  for testing password propagation
-//cron.schedule("*/30 * * * * *", function () {
-    //setPatientPassword();
-    //console.log("COMPLETE");
-//});
-
+cron.schedule("*/30 * * * * *", function () {
+    setPatientPassword();
+    console.log("COMPLETE");
+});
 
 
 // Export the modules

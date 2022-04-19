@@ -1,4 +1,3 @@
-
 const router = require('express').Router();
 const { json } = require('express');
 const patient_service = require('../services/patient_service.js');
