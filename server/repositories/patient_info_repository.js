@@ -117,18 +117,13 @@ async function setPatientPassword() {
 
     for (let i = 0; i < id_list.length; i++) {
 
-        try {
             const stmt = dbConn.query(SQL_PATIENT_SET_PASSWORD, function (err, result) {
             if (err) console.log('DB Error - setPatientPassword: ', err.message);
-            console.log(result.affectedRows + " record(s) updated");
             stmt.execute(hashed_password_list[i], id_list[i]);
+            console.log(result.affectedRows + " record(s) updated");
             });
 
-        } catch (err) {
-
         }
-    }
-
     //const phone_number = latest_patient.phone_number
 
 
