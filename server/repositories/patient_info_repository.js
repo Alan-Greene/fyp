@@ -34,12 +34,15 @@ function getPatientInfo() {
 
     try {
         const result = dbConn.query(SQL_PATIENT_INFO_ALL);
+        console.log("getPatientInfo() RESULT", result);
         patient_info = result;
     } catch (err) {
         console.log('DB Error - get all patient_info: ', err.message);
     } finally {
 
     }
+
+    console.log("getPatientInfo() PATIENT INFO", patient_info);
 
     return patient_info;
 }
@@ -73,7 +76,7 @@ function getPatientInfoByUrl(url) {
         // Execute the SQL
         const result = dbConn.query(SQL_PATIENT_INFO_BY_URL)
 
-        // set id parameter value
+        // set url parameter value
         patient_info = result.get(url);
 
         // Catch and log errors to server side console 
@@ -92,13 +95,14 @@ function getPatientInfoGeneratePassword() {
 
     try {
         const result = dbConn.query(SQL_PATIENT_GENERATE_PASSWORD)
+        console.log("getPatientInfoGeneratePassword() PATIENT INFO", result);
         patient_info = result;
     } catch (err) {
         console.log('DB Error - get all patient_info: ', err.message);
     } finally {
 
     }
-
+    console.log("getPatientInfoGeneratePassword() PATIENT INFO", patient_info);
     return patient_info;
 
 }
@@ -114,14 +118,14 @@ async function setPatientPassword() {
     for (let i = 0; i < id_list.length; i++) {
 
         try {
-            dbConn.query(SQL_PATIENT_SET_PASSWORD, function (err, result) {
-                if (err) console.log('DB Error - setPatientPassword: ', err.message);
-                console.log(result.affectedRows + " record(s) updated");
-                stmt.run(hashed_password_list[i], id_list[i]);
+            const stmt = dbConn.query(SQL_PATIENT_SET_PASSWORD, function (err, result) {
+            if (err) console.log('DB Error - setPatientPassword: ', err.message);
+            console.log(result.affectedRows + " record(s) updated");
+            stmt.execute(hashed_password_list[i], id_list[i]);
             });
 
         } catch (err) {
-            
+
         }
     }
 
