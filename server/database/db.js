@@ -1,4 +1,5 @@
 
+/*
 const Database = require('better-sqlite3');
 const dbConn = new Database('./database/patientdb.db', { verbose: console.log });
 
@@ -12,8 +13,7 @@ class patientDatabase {
         this.conn = new Database(path, { verbose: console.log });
     }
 }
-
-/*
+*/
 const mysql = require ("mysql");
 
 const dbConn = mysql.createConnection({
@@ -32,7 +32,6 @@ dbConn.connect((err) =>{
 
     console.log("Database connected");
 });
-*/
 
 module.exports = {
     dbConn

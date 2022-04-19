@@ -8,6 +8,7 @@ router.get('/', function (req, res){
         const result = patient_service.getPatientInfo();
         console.log("ROUTER.GET RESULT", typeof(result));
         result.values(JSON.parse(JSON.stringify(result)));
+        console.log(result[0].triage_score);
         res.json(result);
     } catch (err) {
         res.status(500);
