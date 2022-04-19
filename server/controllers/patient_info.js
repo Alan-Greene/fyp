@@ -7,6 +7,7 @@ router.get('/', function (req, res){
 
     try {
         const result = patient_service.getPatientInfo();
+        console.log("ROUTER.GET RESULT", typeof(result));
         res.json(result);
     } catch (err) {
         res.status(500);
