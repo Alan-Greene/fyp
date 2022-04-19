@@ -126,7 +126,15 @@ async function setPatientPassword() {
     }
 
     //const phone_number = latest_patient.phone_number
-    sms_service.sendSms(hashed_password_list[0]);
+
+
+    /*
+
+        SEND SMS HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+    */
+
+    //sms_service.sendSms(hashed_password_list[0]);
 }
 
 // Function which uses the SQL_PATIENT_INFO_LAST_TEN_TRIAGE_ONE query to retrieve the latest 10 patients from the database in triage category one.
