@@ -13,7 +13,7 @@ const vonage = new Vonage({
 
 // Specify Host and port
 const HOST = 'ec2-52-206-51-176.compute-1.amazonaws.com';
-const PORT = 80;
+const PORT = 5000;
 
 // app is a new instance of express (the web app framework)
 let app = express();
