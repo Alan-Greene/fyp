@@ -5,7 +5,7 @@ const favicon = require('serve-favicon');
 
 // Specify Host and port
 const HOST = 'ec2-52-87-172-144.compute-1.amazonaws.com';
-const PORT = 5000;
+const PORT = 80;
 
 // app is a new instance of express (the web app framework)
 let app = express();
