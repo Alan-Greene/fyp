@@ -27,5 +27,5 @@ function sendSms(url) {
 }
 
 module.exports = {
-    //sendSms
+    sendSms
 }
