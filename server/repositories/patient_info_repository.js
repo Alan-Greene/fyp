@@ -224,7 +224,7 @@ let insertPatient = async (patient) => {
             const latest_patient = dbConn.prepare("SELECT * FROM patient_info ORDER BY _id DESC LIMIT 1;")
             //const phone_number = latest_patient.phone_number
             const password = latest_patient.password;
-            //sms_service.sendSms(password);
+            sms_service.sendSms(password);
         }
     }
 
