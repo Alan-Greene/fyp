@@ -43,8 +43,10 @@ function validatePatient(formPatient) {
         //validateId(patientId) &&
         !validator.isEmpty(formPatient.checkin_date) &&
         !validator.isEmpty(formPatient.checkin_time) &&
+        !validator.isEmpty(formPatient.triage_date) &&
+        !validator.isEmpty(formPatient.triage_time) &&
         validator.isNumeric(formPatient.birth_year + '', { no_symbols: true, allow_negatives: false }) &&
-        validator.isDate(formPatient.triage_date + '', { no_symbols: true, allow_negatives: false })) {
+        validator.isDate(formPatient.birth_month + '', { no_symbols: true, allow_negatives: false })) {
         // Validation passed
         // create a new Product instance based on Product model object
         // no value for product id (passed as null)
@@ -65,7 +67,8 @@ function validatePatient(formPatient) {
             validator.escape(formPatient.complaint),
             validator.escape(formPatient.diagnosis),
             validator.escape(formPatient.outcome),
-            validator.escape(formPatient.destination)
+            validator.escape(formPatient.destination),
+            validator.escape(formPatient.phone_number),
         );
     } else {
         // debug

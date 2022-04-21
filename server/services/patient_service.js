@@ -59,7 +59,6 @@ function getLastTenTriageFive() {
 }
 
 async function addOrUpdatePatient(patientForm) {
-    console.log("ADDORUPDATE");
     // declare variables
     let result;
     result = await patient_info_repository.insertPatient(patientForm);

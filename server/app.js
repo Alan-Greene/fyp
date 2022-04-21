@@ -4,7 +4,7 @@ const cors = require('cors');
 const favicon = require('serve-favicon');
 
 // Specify Host and port
-const HOST = 'ec2-52-87-172-144.compute-1.amazonaws.com';
+const HOST = 'ec2-34-229-96-101.compute-1.amazonaws.com';
 const PORT = 80;
 
 // app is a new instance of express (the web app framework)
@@ -52,7 +52,6 @@ app.use((req, res, next) => {
 
 app.post('/', (req, res) => {
     res.send(req.body);
-    console.log(req.body);
 })
 
 app.use(favicon(__dirname + '/public/favicon.ico'));
