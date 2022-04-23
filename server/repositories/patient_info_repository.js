@@ -119,7 +119,7 @@ async function setPatientPassword() {
             console.log('DB Error - setPatientPassword: ', err.message);
         }
     }
-    sms_service.sendSms(hashed_password_list[0]);
+    //sms_service.sendSms(hashed_password_list[0]);
 }
 
 // Function which uses the SQL_PATIENT_INFO_LAST_TEN_TRIAGE_ONE query to retrieve the latest 10 patients from the database in triage category one.
@@ -246,10 +246,9 @@ function send (patient) {
 */
 
 //Cron job  for testing password propagation
-// cron.schedule("*/30 * * * * *", function () {
-//     setPatientPassword();
-//     console.log("COMPLETE");
-// });
+//cron.schedule("*/30 * * * * *", function () {
+    //setPatientPassword();
+//});
 
 
 // Export the modules
