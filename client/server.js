@@ -9,7 +9,7 @@ const express = require('express');
 const app = express();
 
 // Define the client host IP and port
-const HOST = 'ec2-52-90-249-241.compute-1.amazonaws.com';
+const HOST = 'ec2-54-90-75-43.compute-1.amazonaws.com';
 const PORT = 3000;
 
 // Serve Static Assets from the public folder

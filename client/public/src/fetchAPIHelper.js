@@ -3,9 +3,9 @@
 //
 
 // API Base URL - the server address
-const BASE_URL = 'http://ec2-3-87-133-79.compute-1.amazonaws.com/patient_info/';
-const TRIAGE_URL = 'http://ec2-3-87-133-79.compute-1.amazonaws.com/patient_info/triage';
-const INDIVIDUAL_URL = 'http://ec2-3-87-133-79.compute-1.amazonaws.com/url';
+const BASE_URL = 'http://ec2-54-227-86-23.compute-1.amazonaws.com/patient_info/';
+const TRIAGE_URL = 'http://ec2-54-227-86-23.compute-1.amazonaws.com/patient_info/triage';
+const INDIVIDUAL_URL = 'http://ec2-54-227-86-23.compute-1.amazonaws.com/url';
 
 // Get HTTP headers for requests to the api
 function getHeaders() {
