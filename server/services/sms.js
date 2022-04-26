@@ -8,7 +8,7 @@ function sendSms(url) {
     //Create publish parameters
     var params = {
         Message: 'ec2-54-159-244-208.compute-1.amazonaws.com/url/individual/' + '' + url, /* required */
-        PhoneNumber: '+353877557578',
+        PhoneNumber: '+353896183202',
     };
 
     //Create promise and SNS service object
